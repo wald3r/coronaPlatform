@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import { Button } from 'react-bootstrap'
+import '../node_modules/react-vis/dist/style.css'
+import {csv} from 'd3-request'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Home from './components/Home'
+import Countries from './components/Countries'
+import globalDataFile from './data/global_information.csv'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App =() => {
+
+  const [globalData, setGlobalData] = useState(null)
+  //const [filter, setFilter] = useState(['Austria'])
+
+  useEffect(() => {
+    csv(globalDataFile, (err, data) => {
+      console.log(data)
+      setGlobalData(data)
+    })  
+  }, [])
+
+    const containerStyle = {
+      textAlign: 'center',
+      position: 'absolute',
+      left: '25%',
+      right: '25%'
+    }
+
+
+    return (
+      <div style={containerStyle}>
+        <br/>
+        <h2>COVID-19 Statistics</h2>
+        <br></br>
+        <Router>
+          <Link to='/'>  <Button size='sm' variant="outline-secondary">Home</Button></Link>{' '}
+          <Link to='/data'><Button size='sm' variant="outline-secondary">Countries</Button></Link>
+
+          <Route exact path='/' render={()=> <Home globalData={globalData}/>} />
+          <Route exact path='/countries' render={() => <Countries />} />
+        </Router>
+      </div>
+      
+    )
+  
+  
 }
 
-export default App;
+
+export default App
