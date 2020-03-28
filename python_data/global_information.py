@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import date, timedelta
-
+import git
 
 def newestFileString(number):
 
@@ -11,6 +11,8 @@ def newestFileString(number):
 
 def main():
 
+ g = git.cmd.Git('/home/walder/workspaces/data_visualisation/project/python_data/data')
+ g.pull()
  days = 0
 
  while(1):
