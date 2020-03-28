@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import {XYPlot, XAxis, YAxis, VerticalBarSeriesCanvas, LabelSeries} from 'react-vis';
+import {XYPlot, XAxis, YAxis, VerticalBarSeriesCanvas, LabelSeries} from 'react-vis'
 
 const Home = ({ globalData }) => {
+
+
 
   const container = {
     height: '100%',
@@ -30,28 +32,34 @@ const Home = ({ globalData }) => {
 
 
     return (
-      <div style={container}>
-        <br/>
-        <br/>
-        <div>  
-          <XYPlot
-            margin={50}
-            xType='ordinal'
-            width={550}
-            height={500}>
-            <VerticalBarSeriesCanvas
-              data={data}
-              color='#760D14'
-            />
-            <LabelSeries 
-              data={data} 
-              getLabel={d => d.y}
-              labelAnchorX='middle'
-              labelAnchorY='top'
-            />
-            <XAxis />
-            <YAxis hideTicks hideLine />
-          </XYPlot>
+      <div>
+         <br/>
+         <br/>
+        
+        Below a bar chart can be observed, which represents the newest covid-19 numbers of all countries combined. 
+        <div style={container}>
+          <br/>
+          <br/>
+          <div>  
+            <XYPlot
+              margin={50}
+              xType='ordinal'
+              width={550}
+              height={500}>
+              <VerticalBarSeriesCanvas
+                data={data}
+                color='#760D14'
+              />
+              <LabelSeries 
+                data={data} 
+                getLabel={d => d.y}
+                labelAnchorX='middle'
+                labelAnchorY='top'
+              />
+              <XAxis />
+              <YAxis hideTicks hideLine />
+            </XYPlot>
+          </div>
         </div>
       </div>
     )

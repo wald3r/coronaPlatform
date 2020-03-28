@@ -16,7 +16,7 @@ const Footer = () => {
 
   return(
     <div style={style}>
-      developed by walder daniel ©
+      developed by © Walder Daniel
     </div>
   )
 }
