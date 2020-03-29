@@ -3,8 +3,9 @@ import git
 
 
 def main():
-    #g = git.cmd.Git('/home/walder/workspaces/data_visualisation/project/python_data/data')
-    #g.pull()
+
+    g = git.cmd.Git('/home/walder/workspaces/data_visualisation/project/python_data/data')
+    g.pull()
 
     df = pd.read_csv('data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
 
