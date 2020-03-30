@@ -27,10 +27,10 @@ def main():
   except:
    days = days + 1
 
- df = df.drop(['FIPS', 'Admin2', 'Province_State', 'Last_Update', 'Combined_Key', 'Lat', 'Long_'], axis=1)
- df = df.groupby("Country_Region").aggregate({'Confirmed': ['sum'], 'Deaths': ['sum'], 'Recovered': ['sum'], 'Active': ['sum']})
+ df = df.drop(['FIPS', 'Admin2', 'Province_State', 'Last_Update', 'Combined_Key', 'Lat', 'Long_', 'Active'], axis=1)
+ df = df.groupby("Country_Region").aggregate({'Confirmed': ['sum'], 'Deaths': ['sum'], 'Recovered': ['sum']})
  df = df.reset_index()
-
+ df['Active'] = df['Confirmed'] - (df['Deaths'] + df['Recovered'])
  print(df)
  df.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/global_information_countries.csv', index=False)
 

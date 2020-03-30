@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import {XYPlot, XAxis, YAxis, VerticalBarSeriesCanvas, LabelSeries, Crosshair} from 'react-vis'
+import {XYPlot, XAxis, YAxis, VerticalBarSeries, LabelSeries, Crosshair} from 'react-vis'
 
 
 const Countries = ({ data }) => {
 
-  const [crosshairValue, setCrosshairValue] = useState([])
+  const [crosshair, setCrosshair] = useState([])
 
   const container = {
     height: '100%',
@@ -12,18 +12,18 @@ const Countries = ({ data }) => {
     alignItems: 'center',
     justifyContent: 'center'
   }
+  
+  const handleCrosshair = (datapoint, event) => {
+    let arr = []
 
-
-  const addCrosshairValue = (datapoint, event) => {
-    const arr = []
-    arr.push(datapoint)
-    setCrosshairValue(arr)
+    arr.push(data[event.index])
+    setCrosshair(arr)
   }
 
-  const removeCrosshairValue = () => {
-    setCrosshairValue([])
+  const removeCrosshair = () => {
+    setCrosshair([])
   }
-
+ 
   if(data === undefined || data === null){
     return(
       <div>
@@ -39,33 +39,45 @@ const Countries = ({ data }) => {
           <br/>
           <br/>
           <div>  
-            <XYPlot
-              onMouseLeave={() => removeCrosshairValue()}
+            <XYPlot   
+              onMouseLeave={() => removeCrosshair()}           
               margin={80}
-              yDomain={[0, 120000]}
+              yDomain={[0, 150000]}
               xType='ordinal'
-              width={5000}
+              width={8000}
               height={500}>
-              <VerticalBarSeriesCanvas
+              <VerticalBarSeries
                 data={data}
                 color='#760D14'
-                onNearestX={(datapoint, event)=>{
-                  addCrosshairValue(datapoint, event)
+                onValueClick={(datapoint, event)=>{
+                  console.log(datapoint)
                 }}
+                onNearestX={(datapoint, event) => {
+                  handleCrosshair(datapoint, event)
+                }}
+              
               />
               <LabelSeries 
                 data={data} 
                 getLabel={d => d.y}
                 labelAnchorX='middle'
                 labelAnchorY='top'
+                onValueClick={(datapoint, event)=>{
+                  console.log(datapoint)
+                }}
               />
+              <Crosshair 
+                values={crosshair}
+              >
+              <div>
+                <div>Country:{crosshair[0] === undefined ? '' : crosshair[0].x}</div>
+                <div>Confirmed:{crosshair[0] === undefined ? '' : crosshair[0].y}</div>
+              </div>
+              </Crosshair>
              
               <XAxis tickLabelAngle={-50}/>
               <YAxis  />
-              <Crosshair
-                values={crosshairValue} 
-                className={'test-class-name'}
-              />
+              
             </XYPlot>
           </div>
         </div>

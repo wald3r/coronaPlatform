@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {XYPlot, XAxis, YAxis, LineSeriesCanvas} from 'react-vis'
+import {XYPlot, XAxis, YAxis, LineSeries, Crosshair} from 'react-vis'
 import activeDataFile from '../data/country_information_active.csv'
 import confirmedDataFile from '../data/country_information_confirmed.csv'
 import deathsDataFile from '../data/country_information_deaths.csv'
@@ -15,7 +15,13 @@ const Country = () => {
   const [deathsData, setDeathsData] = useState(null)
   const [recoveredData, setRecoveredData] = useState(null)
   
-  const [filter, setFilter] = useState('Austria')
+  const [crosshair1, setCrosshair1] = useState([])
+  const [crosshair2, setCrosshair2] = useState([])
+  const [crosshair3, setCrosshair3] = useState([])
+  const [crosshair4, setCrosshair4] = useState([])
+
+
+  const [filter, setFilter] = useState('China')
 
 
   useEffect(() => {
@@ -44,51 +50,65 @@ const Country = () => {
     justifyContent: 'center'
   }
 
+  const handleCrosshair = (datapoint, event, elem) => {
+    let keys = Object.keys(activeData)
+    let arr = []
+    if(elem === 1){
+      arr.push({x: keys[event.index], y: activeData[keys[event.index]]})    
+      setCrosshair1(arr)
+    }
+    else if(elem === 2){
+      arr.push({x: keys[event.index], y: confirmedData[keys[event.index]]})    
+      setCrosshair2(arr)
+    }
+    else if(elem === 3){
+      arr.push({x: keys[event.index], y: deathsData[keys[event.index]]})    
+      setCrosshair3(arr)
+    }else{
+      arr.push({x: keys[event.index], y: recoveredData[keys[event.index]]})    
+      setCrosshair4(arr)
+    }
+  }
 
-  if(activeData !== null && confirmedData !== null && deathsData !== null && recoveredData !== null){
-    
+  
 
-    const activeLineData = () => {
+  const removeCrosshair = () => {
+    setCrosshair1([])
+    setCrosshair2([])
+    setCrosshair3([])
+    setCrosshair4([])
+  }
+
+
+  if(recoveredData !== null && confirmedData !== null && activeData !== null && deathsData !== null){
+   
+    const handleData = () => {
       let keys = Object.keys(activeData)
       let data = []
+      let data1 = []
+      let data2 = []
+      let data3 = []
+      let data4 = []
       for (let a = 1; a < keys.length; a++){
-        let tmp = activeData[keys[a]]
-        data.push({x: keys[a], y: tmp})
+        let tmp1 = activeData[keys[a]]
+        let tmp2 = confirmedData[keys[a]]
+        let tmp3 = deathsData[keys[a]]
+        let tmp4 = recoveredData[keys[a]]
+  
+        data1.push({x: keys[a], y: tmp1})
+        data2.push({x: keys[a], y: tmp2})
+        data3.push({x: keys[a], y: tmp3})
+        data4.push({x: keys[a], y: tmp4})
       }
+      data.push(data1)
+      data.push(data2)
+      data.push(data3)
+      data.push(data4)
+      
       return data
+  
     }
-
-    const confirmedLineData = () => {
-      let keys = Object.keys(confirmedData)
-      let data = []
-      for (let a = 1; a < keys.length; a++){
-        let tmp = confirmedData[keys[a]]
-        data.push({x: keys[a], y: tmp})
-      }
-      return data
-    }
-
-    const deathsLineData = () => {
-      let keys = Object.keys(deathsData)
-      let data = []
-      for (let a = 1; a < keys.length; a++){
-        let tmp = deathsData[keys[a]]
-        data.push({x: keys[a], y: tmp})
-      }
-      return data
-    }
-
-    const recoveredLineData = () => {
-      let keys = Object.keys(recoveredData)
-      let data = []
-      for (let a = 1; a < keys.length; a++){
-        let tmp = recoveredData[keys[a]]
-        data.push({x: keys[a], y: tmp})
-      }
-      return data
-    }
-    
-
+   
     return (
       <div>
           <br></br>
@@ -98,28 +118,54 @@ const Country = () => {
             <br/>
             <div>  
               <XYPlot
+                onMouseLeave={() => removeCrosshair()}
                 margin={50}
                 xType='ordinal'
-                yDomain={[0, 20000]}
+                yDomain={[0, 100000]}
                 width={1000}
                 height={500}>
-                <LineSeriesCanvas
-                  data={activeLineData()}
+                <LineSeries
+                  data={handleData()[0]}
                   color='red'
+                  onNearestX={(datapoint, event) => {
+                    handleCrosshair(datapoint, event, 1)
+                  }}
                 />
-                <LineSeriesCanvas
-                  data={confirmedLineData()}
-                  color='#760D14'
+                <LineSeries
+                  data={handleData()[1]}
+                  color='blue'
+                  onNearestX={(datapoint, event) => {
+                    handleCrosshair(datapoint, event, 2)
+                  }}
+          
                 />
-                <LineSeriesCanvas
-                  data={deathsLineData()}
+                <LineSeries
+                  data={handleData()[2]}
                   color='black'
+                  onNearestX={(datapoint, event) => {
+                    handleCrosshair(datapoint, event, 3)
+                  }}
                 />
 
-                <LineSeriesCanvas
-                  data={recoveredLineData()}
+                <LineSeries
+                  data={handleData()[3]}
                   color='green'
+                  onNearestX={(datapoint, event) => {
+                    handleCrosshair(datapoint, event, 4)
+                  }}
                 />  
+                <Crosshair 
+                  values={[crosshair1[0]]}
+                >
+                <div>
+                  <div>Date:{crosshair1[0] === undefined ? '' : crosshair1[0].x}</div>
+                  <div>Active:{crosshair1[0] === undefined ? '' : crosshair1[0].y}</div>
+                  <div>Confirmed:{crosshair2[0] === undefined ? '' : crosshair2[0].y}</div>
+                  <div>Deaths:{crosshair3[0] === undefined ? '' : crosshair3[0].y}</div>
+                  <div>Recovered:{crosshair4[0] === undefined ? '' : crosshair4[0].y}</div>
+                </div>
+                </Crosshair>
+            
               
                 <XAxis tickLabelAngle={-50}/>
                 <YAxis />

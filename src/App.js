@@ -24,7 +24,6 @@ const App =() => {
       const modifiedData = data.map(d => {
         return {x: d.Country_Region, y: d.Confirmed}
       })
-
       const filteredDataFile = modifiedData.filter(d => d.y !== 'sum')
       setGlobalCountryData(filteredDataFile)
     }) 
