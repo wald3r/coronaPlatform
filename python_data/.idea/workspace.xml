@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3694ee-6078-4058-b0ac-be72764ce0db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data" beforeDir="false" afterPath="$PROJECT_DIR$/data" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global_information.py" beforeDir="false" afterPath="$PROJECT_DIR$/global_information.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/global_information_countries.py" beforeDir="false" afterPath="$PROJECT_DIR$/global_information_countries.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/components/Countries.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Countries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/components/Country.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Country.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/data/country_information_active.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_active.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/data/country_information_confirmed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_confirmed.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/data/country_information_deaths.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_deaths.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/data/country_information_recovered.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_recovered.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/data/global_information.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/global_information.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/data/global_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/global_information_countries.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,17 +30,17 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_daily_reports/03-29-2020.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
+          <provider selected="true" editor-type-id="csv-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/global_information_countries.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="30" column="107" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -71,26 +62,26 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
+          <provider selected="true" editor-type-id="csv-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
+          <provider selected="true" editor-type-id="csv-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
+          <provider selected="true" editor-type-id="csv-text-editor" />
         </entry>
       </file>
     </leaf>
@@ -128,7 +119,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,6 +153,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,14 +284,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="0" y="-2" width="1680" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20327869" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2027761" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.37580994" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37486458" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -327,10 +319,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_daily_reports/03-29-2020.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/country_information.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -343,27 +335,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/global_information_countries.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="30" column="107" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

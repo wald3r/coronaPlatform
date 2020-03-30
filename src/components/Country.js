@@ -1,53 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import {XYPlot, XAxis, YAxis, LineSeries, Crosshair} from 'react-vis'
-import activeDataFile from '../data/country_information_active.csv'
-import confirmedDataFile from '../data/country_information_confirmed.csv'
-import deathsDataFile from '../data/country_information_deaths.csv'
-import recoveredDataFile from '../data/country_information_recovered.csv'
+import React, { useState } from 'react'
+import {XYPlot, XAxis, YAxis, LineSeries, Crosshair, DiscreteColorLegend} from 'react-vis'
 
-import {csv} from 'd3-request'
+import { Button, Modal } from 'react-bootstrap'
 
 
-const Country = () => {
+const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
 
-  const [activeData, setActiveData] = useState(null)
-  const [confirmedData, setConfirmedData] = useState(null)
-  const [deathsData, setDeathsData] = useState(null)
-  const [recoveredData, setRecoveredData] = useState(null)
+  const [activeDataFlag, setActiveDataFlag] = useState(false)
+  const [confirmedDataFlag, setConfirmedDataFlag] = useState(false)
+  const [deathsDataFlag, setDeathsDataFlag] = useState(false)
+  const [recoveredDataFlag, setRecoveredDataFlag] = useState(false)
+
   
   const [crosshair1, setCrosshair1] = useState([])
   const [crosshair2, setCrosshair2] = useState([])
   const [crosshair3, setCrosshair3] = useState([])
   const [crosshair4, setCrosshair4] = useState([])
+  const [date, setDate] = useState('')  
 
-
-  const [filter, setFilter] = useState('China')
-
-
-  useEffect(() => {
-    csv(activeDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === filter )   
-      setActiveData(filteredData[0])
-    }) 
-    csv(confirmedDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === filter )   
-      setConfirmedData(filteredData[0])
-    }) 
-    csv(deathsDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === filter )   
-      setDeathsData(filteredData[0])
-    }) 
-    csv(recoveredDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === filter )   
-      setRecoveredData(filteredData[0])
-    }) 
-  }, [])
-
-  const container = {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+  const handleClose = () => {
+    handleGraph(false)
   }
 
   const handleCrosshair = (datapoint, event, elem) => {
@@ -68,6 +40,7 @@ const Country = () => {
       arr.push({x: keys[event.index], y: recoveredData[keys[event.index]]})    
       setCrosshair4(arr)
     }
+    setDate(keys[event.index])
   }
 
   
@@ -77,10 +50,11 @@ const Country = () => {
     setCrosshair2([])
     setCrosshair3([])
     setCrosshair4([])
+    setDate('')
   }
 
 
-  if(recoveredData !== null && confirmedData !== null && activeData !== null && deathsData !== null){
+  if((recoveredData !== null && recoveredData !== undefined) && confirmedData !== null && confirmedData !== undefined && activeData !== undefined && activeData !== null && deathsData !== null && deathsData !== undefined ){
    
     const handleData = () => {
       let keys = Object.keys(activeData)
@@ -110,29 +84,36 @@ const Country = () => {
     }
    
     return (
-      <div>
-          <br></br>
-          {filter}
-          <div style={container}>
-            <br/>
-            <br/>
+
+
+      <Modal size="lg" show={showGraph} onHide={handleClose} animation={true}>
+      <Modal.Header closeButton>
+        <Modal.Title>{filter} - Graph</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
             <div>  
+              <Button size='sm' onClick={() => setActiveDataFlag(!activeDataFlag)}>Click me</Button>
+              <Button size='sm' onClick={() => setConfirmedDataFlag(!confirmedDataFlag)}>Click me</Button>
+
               <XYPlot
                 onMouseLeave={() => removeCrosshair()}
                 margin={50}
                 xType='ordinal'
                 yDomain={[0, 100000]}
-                width={1000}
+                width={800}
                 height={500}>
+                <DiscreteColorLegend 
+                  items={[{title: 'Active', color: 'red', disabled: !activeDataFlag}, {title: 'Confirmed', color: 'blue', disabled: !confirmedDataFlag}]}
+                />
                 <LineSeries
-                  data={handleData()[0]}
+                  data={activeDataFlag === true ? handleData()[0]: null}
                   color='red'
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 1)
                   }}
                 />
                 <LineSeries
-                  data={handleData()[1]}
+                  data={confirmedDataFlag === true ? handleData()[1]: null}
                   color='blue'
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 2)
@@ -155,31 +136,51 @@ const Country = () => {
                   }}
                 />  
                 <Crosshair 
-                  values={[crosshair1[0]]}
+                  values={[crosshair1[0], crosshair2[0], crosshair3[0], crosshair4[0]]}
                 >
                 <div>
-                  <div>Date:{crosshair1[0] === undefined ? '' : crosshair1[0].x}</div>
-                  <div>Active:{crosshair1[0] === undefined ? '' : crosshair1[0].y}</div>
-                  <div>Confirmed:{crosshair2[0] === undefined ? '' : crosshair2[0].y}</div>
-                  <div>Deaths:{crosshair3[0] === undefined ? '' : crosshair3[0].y}</div>
-                  <div>Recovered:{crosshair4[0] === undefined ? '' : crosshair4[0].y}</div>
+                  <div>{date === '' ? '' : `Date:${date}`}</div>
+                  <div>{crosshair1[0] === undefined ? '' : `Active:${crosshair1[0].y}`}</div>
+                  <div>{crosshair2[0] === undefined ? '' : `Confirmed:${crosshair2[0].y}`}</div>
+                  <div>{crosshair3[0] === undefined ? '' : `Deaths:${crosshair3[0].y}`}</div>
+                  <div>{crosshair4[0] === undefined ? '' : `Recovered:${crosshair4[0].y}`}</div>
                 </div>
                 </Crosshair>
             
               
-                <XAxis tickLabelAngle={-50}/>
+                <XAxis hideTicks/>
                 <YAxis />
               </XYPlot>
             </div>
-          </div>
-        </div>
+       
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
     )
   }
   else{
     return(
-      <div>
-        Loading...
-      </div>
+      <Modal show={showGraph} onHide={handleClose} animation={true}>
+      <Modal.Header closeButton>
+        <Modal.Title>{filter} Statistics</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div>
+         Loading...
+        </div>
+      
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
     )
   }
 }

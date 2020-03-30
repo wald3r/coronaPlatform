@@ -32,11 +32,9 @@ const Home = ({ globalData }) => {
 
 
     return (
-      <div>
-         <br/>
-         <br/>
-        
-        Below a bar chart can be observed, which represents the newest covid-19 numbers of all countries combined. 
+      <div style={container}>
+        To the right a bar chart can be observed, which represents the newest covid-19 numbers of all countries combined. 
+        <br></br>
         <div style={container}>
           <br/>
           <br/>

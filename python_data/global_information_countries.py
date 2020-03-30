@@ -31,7 +31,9 @@ def main():
  df = df.groupby("Country_Region").aggregate({'Confirmed': ['sum'], 'Deaths': ['sum'], 'Recovered': ['sum']})
  df = df.reset_index()
  df['Active'] = df['Confirmed'] - (df['Deaths'] + df['Recovered'])
- print(df)
+ df.columns = df.columns.droplevel(1)
+
+ df = df.sort_values(by=['Confirmed'], ascending=False)
  df.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/global_information_countries.csv', index=False)
 
 

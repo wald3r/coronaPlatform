@@ -4,7 +4,6 @@ import '../node_modules/react-vis/dist/style.css'
 import {csv} from 'd3-request'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
-import Country from './components/Country'
 import Countries from './components/Countries'
 import globalDataFile from './data/global_information.csv'
 import globalCountryDataFile from './data/global_information_countries.csv'
@@ -24,8 +23,7 @@ const App =() => {
       const modifiedData = data.map(d => {
         return {x: d.Country_Region, y: d.Confirmed}
       })
-      const filteredDataFile = modifiedData.filter(d => d.y !== 'sum')
-      setGlobalCountryData(filteredDataFile)
+      setGlobalCountryData(modifiedData)
     }) 
   }, [])
 
@@ -47,12 +45,10 @@ const App =() => {
             <h2>COVID-19 Statistics</h2>
             <br></br>
                 <Link to='/'>  <Button size='sm' variant="outline-secondary">Home</Button></Link>{' '}
-                <Link to='/country'><Button size='sm' variant="outline-secondary">Country</Button></Link>
                 <Link to='/countries'><Button size='sm' variant="outline-secondary">Countries</Button></Link>
 
 
                 <Route exact path='/' render={()=> <Home globalData={globalData}/>} />
-                <Route exact path='/country' render={() => <Country />} />
                 <Route exact path='/countries' render={() => <Countries data={globalCountryData} />} />
           </div>
           <br></br>
