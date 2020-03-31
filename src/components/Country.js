@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {XYPlot, XAxis, YAxis, LineSeries, Crosshair, DiscreteColorLegend} from 'react-vis'
+import {XYPlot, XAxis, YAxis, LineSeries, Crosshair} from 'react-vis'
 
 import { Button, Modal } from 'react-bootstrap'
 
@@ -7,11 +7,10 @@ import { Button, Modal } from 'react-bootstrap'
 const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
 
   const [activeDataFlag, setActiveDataFlag] = useState(false)
-  const [confirmedDataFlag, setConfirmedDataFlag] = useState(false)
+  const [confirmedDataFlag, setConfirmedDataFlag] = useState(true)
   const [deathsDataFlag, setDeathsDataFlag] = useState(false)
   const [recoveredDataFlag, setRecoveredDataFlag] = useState(false)
 
-  
   const [crosshair1, setCrosshair1] = useState([])
   const [crosshair2, setCrosshair2] = useState([])
   const [crosshair3, setCrosshair3] = useState([])
@@ -92,9 +91,10 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
       </Modal.Header>
       <Modal.Body>
             <div>  
-              <Button size='sm' onClick={() => setActiveDataFlag(!activeDataFlag)}>Click me</Button>
-              <Button size='sm' onClick={() => setConfirmedDataFlag(!confirmedDataFlag)}>Click me</Button>
-
+              <Button size='sm' variant={confirmedDataFlag === true ? 'primary' : 'outline-primary'} onClick={() => setConfirmedDataFlag(!confirmedDataFlag)}>Active</Button>
+              <Button size='sm' variant={activeDataFlag === true ? 'danger' : 'outline-danger'} onClick={() => setActiveDataFlag(!activeDataFlag)}>Confirmed</Button><br/>
+              <Button size='sm' variant={deathsDataFlag === true ? 'dark' : 'outline-dark'} onClick={() => setDeathsDataFlag(!deathsDataFlag)}>Deaths</Button>
+              <Button size='sm' variant={recoveredDataFlag === true ? 'success' : 'outline-success'} onClick={() => setRecoveredDataFlag(!recoveredDataFlag)}>Recovered</Button>
               <XYPlot
                 onMouseLeave={() => removeCrosshair()}
                 margin={50}
@@ -102,9 +102,6 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
                 yDomain={[0, 100000]}
                 width={800}
                 height={500}>
-                <DiscreteColorLegend 
-                  items={[{title: 'Active', color: 'red', disabled: !activeDataFlag}, {title: 'Confirmed', color: 'blue', disabled: !confirmedDataFlag}]}
-                />
                 <LineSeries
                   data={activeDataFlag === true ? handleData()[0]: null}
                   color='red'
@@ -121,7 +118,7 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
           
                 />
                 <LineSeries
-                  data={handleData()[2]}
+                  data={deathsDataFlag === true ? handleData()[2]: null}
                   color='black'
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 3)
@@ -129,7 +126,7 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
                 />
 
                 <LineSeries
-                  data={handleData()[3]}
+                  data={recoveredDataFlag === true ? handleData()[3]: null}
                   color='green'
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 4)

@@ -33,9 +33,27 @@ def main():
  df['Active'] = df['Confirmed'] - (df['Deaths'] + df['Recovered'])
  df.columns = df.columns.droplevel(1)
 
- df = df.sort_values(by=['Confirmed'], ascending=False)
- df.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/global_information_countries.csv', index=False)
+ df1 = df[['Country_Region', 'Deaths']]
+ df2 = df[['Country_Region', 'Active']]
+ df3 = df[['Country_Region', 'Recovered']]
+ df4 = df[['Country_Region', 'Confirmed']]
 
+ df1 = df1.rename(columns={'Country_Region': 'x', 'Deaths': 'y'})
+ df2 = df2.rename(columns={'Country_Region': 'x', 'Active': 'y'})
+ df3 = df3.rename(columns={'Country_Region': 'x', 'Recovered': 'y'})
+ df4 = df4.rename(columns={'Country_Region': 'x', 'Confirmed': 'y'})
+
+ df1 = df1.sort_values(by=['y'], ascending=False)
+ df2 = df2.sort_values(by=['y'], ascending=False)
+ df3 = df3.sort_values(by=['y'], ascending=False)
+ df4 = df4.sort_values(by=['y'], ascending=False)
+
+ df1.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/deaths_information_countries.csv', index=False)
+ df2.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/active_information_countries.csv', index=False)
+ df3.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/recovered_information_countries.csv', index=False)
+ df4.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/confirmed_information_countries.csv', index=False)
+
+ print('All files generated!')
 
 if __name__ == "__main__":
     main()

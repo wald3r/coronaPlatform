@@ -2,7 +2,7 @@ import React from 'react'
 
 import {XYPlot, XAxis, YAxis, VerticalBarSeriesCanvas, LabelSeries} from 'react-vis'
 
-const Home = ({ globalData }) => {
+const Global = ({ globalData }) => {
 
 
 
@@ -32,12 +32,7 @@ const Home = ({ globalData }) => {
 
 
     return (
-      <div style={container}>
-        To the right a bar chart can be observed, which represents the newest covid-19 numbers of all countries combined. 
-        <br></br>
         <div style={container}>
-          <br/>
-          <br/>
           <div>  
             <XYPlot
               margin={50}
@@ -59,10 +54,9 @@ const Home = ({ globalData }) => {
             </XYPlot>
           </div>
         </div>
-      </div>
     )
   }
 }
 
 
-export default Home
+export default Global

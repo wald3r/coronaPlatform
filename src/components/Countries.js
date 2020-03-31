@@ -7,7 +7,7 @@ import deathsDataFile from '../data/country_information_deaths.csv'
 import recoveredDataFile from '../data/country_information_recovered.csv'
 import {csv} from 'd3-request'
 
-const Countries = ({ data }) => {
+const Countries = ({ data, info }) => {
 
   const [crosshair, setCrosshair] = useState([])
   const [graph, setGraph] = useState(false)
@@ -17,14 +17,6 @@ const Countries = ({ data }) => {
   const [confirmedData, setConfirmedData] = useState(null)
   const [deathsData, setDeathsData] = useState(null)
   const [recoveredData, setRecoveredData] = useState(null)
-
-  
-  const container = {
-    height: '100%',
-    width: '100%',
-    display: 'inline-block',
-    overflow: 'auto',
-  }
   
   const handleShowGraph = (datapoint, event) => {
     setFilter(datapoint.x)
@@ -66,7 +58,7 @@ const Countries = ({ data }) => {
     )
   }else{
     return (
-      <div>
+      <div id={info} style={{overflow: 'auto'}}>
         <Country
           handleGraph={setGraph}
           showGraph={graph}
@@ -76,11 +68,8 @@ const Countries = ({ data }) => {
           deathsData={deathsData}
           recoveredData={recoveredData}
         />
-        <br/>
-        <br/>
-        <div style={container}>
-          <br/>
-          <br/>
+      
+      
           <div>  
             <XYPlot   
               onMouseLeave={() => removeCrosshair()}           
@@ -114,7 +103,7 @@ const Countries = ({ data }) => {
               >
               <div>
                 <div>Country:{crosshair[0] === undefined ? '' : crosshair[0].x}</div>
-                <div>Confirmed:{crosshair[0] === undefined ? '' : crosshair[0].y}</div>
+                <div>{info}:{crosshair[0] === undefined ? '' : crosshair[0].y}</div>
               </div>
               </Crosshair>
              
@@ -124,7 +113,6 @@ const Countries = ({ data }) => {
             </XYPlot>
           </div>
         </div>
-      </div>
     )
   }
 
