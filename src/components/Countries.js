@@ -6,6 +6,7 @@ import confirmedDataFile from '../data/country_information_confirmed.csv'
 import deathsDataFile from '../data/country_information_deaths.csv'
 import recoveredDataFile from '../data/country_information_recovered.csv'
 import {csv} from 'd3-request'
+import { Spinner } from 'react-bootstrap'
 
 const Countries = ({ data, info }) => {
 
@@ -17,7 +18,8 @@ const Countries = ({ data, info }) => {
   const [confirmedData, setConfirmedData] = useState(null)
   const [deathsData, setDeathsData] = useState(null)
   const [recoveredData, setRecoveredData] = useState(null)
-  
+  const [domain, setDomain] = useState(null)
+
   const handleShowGraph = (datapoint, event) => {
     setFilter(datapoint.x)
     setGraph(true)
@@ -29,6 +31,8 @@ const Countries = ({ data, info }) => {
     csv(confirmedDataFile, (err, data) => {
       const filteredData = data.filter(point => point.Country  === datapoint.x )   
       setConfirmedData(filteredData[0])
+      let keys = Object.keys(filteredData[0])
+      setDomain(filteredData[0][keys[keys.length-1]])
     }) 
     csv(deathsDataFile, (err, data) => {
       const filteredData = data.filter(point => point.Country  === datapoint.x )   
@@ -53,10 +57,11 @@ const Countries = ({ data, info }) => {
   if(data === undefined || data === null){
     return(
       <div>
-        Loading...
+        <Spinner animation="border" role="status" /> Loading...     
       </div>
     )
   }else{
+
     return (
       <div id={info} style={{overflow: 'auto'}}>
         <Country
@@ -67,14 +72,16 @@ const Countries = ({ data, info }) => {
           confirmedData={confirmedData}
           deathsData={deathsData}
           recoveredData={recoveredData}
+          domain={domain}
         />
       
       
           <div>  
+            {info} - Cases
             <XYPlot   
               onMouseLeave={() => removeCrosshair()}           
-              margin={80}
-              yDomain={[0, 150000]}
+              margin={90}
+              yDomain={[0, data[0].y]}
               xType='ordinal'
               width={8000}
               height={500}>
@@ -108,7 +115,7 @@ const Countries = ({ data, info }) => {
               </Crosshair>
              
               <XAxis tickLabelAngle={-50}/>
-              <YAxis  />
+              <YAxis  hideTicks />
               
             </XYPlot>
           </div>

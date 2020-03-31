@@ -4,7 +4,7 @@ import {XYPlot, XAxis, YAxis, LineSeries, Crosshair} from 'react-vis'
 import { Button, Modal } from 'react-bootstrap'
 
 
-const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
+const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
 
   const [activeDataFlag, setActiveDataFlag] = useState(false)
   const [confirmedDataFlag, setConfirmedDataFlag] = useState(true)
@@ -42,8 +42,6 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
     setDate(keys[event.index])
   }
 
-  
-
   const removeCrosshair = () => {
     setCrosshair1([])
     setCrosshair2([])
@@ -54,7 +52,7 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
 
 
   if((recoveredData !== null && recoveredData !== undefined) && confirmedData !== null && confirmedData !== undefined && activeData !== undefined && activeData !== null && deathsData !== null && deathsData !== undefined ){
-   
+ 
     const handleData = () => {
       let keys = Object.keys(activeData)
       let data = []
@@ -72,6 +70,7 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
         data2.push({x: keys[a], y: tmp2})
         data3.push({x: keys[a], y: tmp3})
         data4.push({x: keys[a], y: tmp4})
+        
       }
       data.push(data1)
       data.push(data2)
@@ -84,22 +83,23 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
    
     return (
 
-
       <Modal size="lg" show={showGraph} onHide={handleClose} animation={true}>
       <Modal.Header closeButton>
         <Modal.Title>{filter} - Graph</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-            <div>  
-              <Button size='sm' variant={confirmedDataFlag === true ? 'primary' : 'outline-primary'} onClick={() => setConfirmedDataFlag(!confirmedDataFlag)}>Active</Button>
-              <Button size='sm' variant={activeDataFlag === true ? 'danger' : 'outline-danger'} onClick={() => setActiveDataFlag(!activeDataFlag)}>Confirmed</Button><br/>
-              <Button size='sm' variant={deathsDataFlag === true ? 'dark' : 'outline-dark'} onClick={() => setDeathsDataFlag(!deathsDataFlag)}>Deaths</Button>
-              <Button size='sm' variant={recoveredDataFlag === true ? 'success' : 'outline-success'} onClick={() => setRecoveredDataFlag(!recoveredDataFlag)}>Recovered</Button>
+            <div> 
+              <div style={{textAlign: 'center'}}>  
+                <Button size='sm' variant={confirmedDataFlag === true ? 'primary' : 'outline-primary'} onClick={() => setConfirmedDataFlag(!confirmedDataFlag)}>Confirmed</Button>
+                <Button size='sm' variant={activeDataFlag === true ? 'danger' : 'outline-danger'} onClick={() => setActiveDataFlag(!activeDataFlag)}>Active</Button>
+                <Button size='sm' variant={deathsDataFlag === true ? 'dark' : 'outline-dark'} onClick={() => setDeathsDataFlag(!deathsDataFlag)}>Deaths</Button>
+                <Button size='sm' variant={recoveredDataFlag === true ? 'success' : 'outline-success'} onClick={() => setRecoveredDataFlag(!recoveredDataFlag)}>Recovered</Button>
+              </div>
               <XYPlot
                 onMouseLeave={() => removeCrosshair()}
-                margin={50}
+                margin={80}
                 xType='ordinal'
-                yDomain={[0, 100000]}
+                yDomain={[0, domain]}
                 width={800}
                 height={500}>
                 <LineSeries
@@ -145,7 +145,7 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
                 </Crosshair>
             
               
-                <XAxis hideTicks/>
+                <XAxis title={'Days'} hideTicks/>
                 <YAxis />
               </XYPlot>
             </div>
@@ -164,7 +164,7 @@ const Country = ({handleGraph, showGraph, filter, confirmedData, recoveredData, 
     return(
       <Modal show={showGraph} onHide={handleClose} animation={true}>
       <Modal.Header closeButton>
-        <Modal.Title>{filter} Statistics</Modal.Title>
+        <Modal.Title>{filter} - Graph</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div>

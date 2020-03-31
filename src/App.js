@@ -49,21 +49,12 @@ const App =() => {
       right: '5%',
       transform: `translate(-50px, -50px)` 
     }
-
-
+    
     const table = {
       textAlign:'center',
       width: '1500px',
       tableLayout: 'fixed'
     }
-
-    const td = {
-      overflow: 'auto'
-    }
-
-    
-    
-
 
     return (
       <div>
@@ -74,7 +65,7 @@ const App =() => {
             <Table style={table} striped bordered hover>
               <tbody>
                 <tr >
-                  <td><Global globalData={globalData} /></td>
+                  <td><Global globalData={globalData}/></td>
                   <td style={{verticalAlign: 'middle'}}>To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined. </td>
                 </tr>
                 <tr>
@@ -87,7 +78,7 @@ const App =() => {
                 </tr>
                 <tr>
                   <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all death cases per country.</td>
-                  <td ><Countries data={globalCountryDeaths} info={'Deaths'}/></td>
+                  <td ><Countries data={globalCountryDeaths} info={'Death'}/></td>
                 </tr>
                 <tr>
                   <td ><Countries data={globalCountryRecovered} info={'Recovered'}/></td>

@@ -34,6 +34,8 @@ def main():
  df = df.drop(['index'], axis=1)
  df['Active'] = df['Confirmed'] - (df['Deaths'] + df['Recovered'])
 
+ #df1 = pd.DataFrame(data=[None, None, None], columns=['a'])
+
  print(df)
  df.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/global_information.csv', index=False)
 
