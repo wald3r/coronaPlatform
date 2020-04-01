@@ -24,6 +24,7 @@ const App =() => {
   const [globalCountryActive, setGlobalCountryActive] = useState(null)
 
   const [globalChar, setGlobalChar] = useState(true)
+  const [countryChar, setCountryChar] = useState('confirmed')
 
   useEffect(() => {
     csv(globalDataFile, (err, data) => {
@@ -68,26 +69,25 @@ const App =() => {
               <tbody>
                 <tr >
                   <td>
-                    <Button onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Pie Chart' : 'Bar Chart'}</Button>
+                    <Button variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Pie Chart' : 'Bar Chart'}</Button>
                     {globalChar === true ? <GlobalBar  globalData={globalData}/> : <GlobalPie globalData={globalData}/>}
                   </td>
                   <td style={{verticalAlign: 'middle'}}>To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined. </td>
                 </tr>
                 <tr>
-                  <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all confirmed cases per country.</td>
-                  <td ><Countries data={globalCountryConfirmed} info={'Confirmed'} color={'blue'}/></td>
-                </tr>
-                <tr>
-                  <td ><Countries data={globalCountryActive} info={'Active'} color={'red'}/></td>
-                  <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all active cases per country.</td>
-                </tr>
-                <tr>
-                  <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all death cases per country.</td>
-                  <td ><Countries data={globalCountryDeaths} color={'black'} info={'Death'}/></td>
-                </tr>
-                <tr>
-                  <td ><Countries data={globalCountryRecovered} color={'green'} info={'Recovered'}/></td>
-                  <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all recovered cases per country.</td>
+                  <td style={{verticalAlign: 'middle'}}> 
+                    A bar chart, which shows all cases per country. <br /><br />
+                    <Button variant={countryChar === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('confirmed')}>Confirmed</Button>
+                    <Button variant={countryChar === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('active')}>Active</Button>
+                    <Button variant={countryChar === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('recovered')}>Recovered</Button>
+                    <Button variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
+                  </td>
+                  <td >
+                    {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={'blue'}/> : ''}
+                    {countryChar === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={'red'}/> : ''}
+                    {countryChar === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={'green'}/> : ''}
+                    {countryChar === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={'black'}/> : ''}
+                  </td>
                 </tr>
               </tbody>
             </Table>
