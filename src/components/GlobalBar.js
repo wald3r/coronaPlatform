@@ -2,7 +2,7 @@ import React from 'react'
 import { Spinner  } from 'react-bootstrap'
 import {XYPlot, XAxis, YAxis, VerticalBarSeriesCanvas, LabelSeries} from 'react-vis'
 
-const Global = ({ globalData }) => {
+const GlobalBar = ({ globalData }) => {
 
   const container = {
     height: '100%',
@@ -20,10 +20,10 @@ const Global = ({ globalData }) => {
   }else{
 
     var data = [
-      {x: "Confirmed", y: Number(globalData[0].Confirmed), yOffset: -5},
-      {x: "Deaths", y: Number(globalData[0].Deaths), yOffset: -5,},
-      {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5},
-      {x: "Active", y: Number(globalData[0].Active), yOffset: -5}
+      {x: "Confirmed", y: Number(globalData[0].Confirmed), yOffset: -5, color: 'blue'},
+      {x: "Deaths", y: Number(globalData[0].Deaths), yOffset: -5, color: 'black'},
+      {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5, color: 'green'},
+      {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: 'red'}
     ]
     return (
       <div style={container}>
@@ -34,10 +34,11 @@ const Global = ({ globalData }) => {
             xType='ordinal'
             width={550}
             height={500}
+            colorType="literal"
           >
           <VerticalBarSeriesCanvas
             data={data}
-            color='#760D14'
+            //color='#760D14'
           />
           <LabelSeries 
             data={data} 
@@ -56,4 +57,4 @@ const Global = ({ globalData }) => {
 }
 
 
-export default Global
+export default GlobalBar

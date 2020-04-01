@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import '../node_modules/react-vis/dist/style.css'
-import { Table } from 'react-bootstrap'
+import { Table, Button } from 'react-bootstrap'
 import {csv} from 'd3-request'
-import Global from './components/Global'
+import GlobalPie from './components/GlobalPie'
+import GlobalBar from './components/GlobalBar'
 import Countries from './components/Countries'
 
 import globalDataFile from './data/global_information.csv'
@@ -22,6 +23,7 @@ const App =() => {
   const [globalCountryRecovered, setGlobalCountryRecovered] = useState(null)
   const [globalCountryActive, setGlobalCountryActive] = useState(null)
 
+  const [globalChar, setGlobalChar] = useState(true)
 
   useEffect(() => {
     csv(globalDataFile, (err, data) => {
@@ -65,23 +67,26 @@ const App =() => {
             <Table style={table} striped bordered hover>
               <tbody>
                 <tr >
-                  <td><Global globalData={globalData}/></td>
+                  <td>
+                    <Button onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Pie Chart' : 'Bar Chart'}</Button>
+                    {globalChar === true ? <GlobalBar  globalData={globalData}/> : <GlobalPie globalData={globalData}/>}
+                  </td>
                   <td style={{verticalAlign: 'middle'}}>To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined. </td>
                 </tr>
                 <tr>
                   <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all confirmed cases per country.</td>
-                  <td ><Countries data={globalCountryConfirmed} info={'Confirmed'}/></td>
+                  <td ><Countries data={globalCountryConfirmed} info={'Confirmed'} color={'blue'}/></td>
                 </tr>
                 <tr>
-                  <td ><Countries data={globalCountryActive} info={'Active'}/></td>
+                  <td ><Countries data={globalCountryActive} info={'Active'} color={'red'}/></td>
                   <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all active cases per country.</td>
                 </tr>
                 <tr>
                   <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all death cases per country.</td>
-                  <td ><Countries data={globalCountryDeaths} info={'Death'}/></td>
+                  <td ><Countries data={globalCountryDeaths} color={'black'} info={'Death'}/></td>
                 </tr>
                 <tr>
-                  <td ><Countries data={globalCountryRecovered} info={'Recovered'}/></td>
+                  <td ><Countries data={globalCountryRecovered} color={'green'} info={'Recovered'}/></td>
                   <td style={{verticalAlign: 'middle'}}> A bar chart, which shows all recovered cases per country.</td>
                 </tr>
               </tbody>

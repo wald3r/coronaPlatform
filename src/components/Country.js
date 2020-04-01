@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {XYPlot, XAxis, YAxis, LineSeries, Crosshair} from 'react-vis'
+import {XYPlot, XAxis, YAxis, LineSeries, Crosshair, HorizontalGridLines} from 'react-vis'
 
 import { Button, Modal } from 'react-bootstrap'
 
@@ -144,7 +144,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                 </div>
                 </Crosshair>
             
-              
+                <HorizontalGridLines />
                 <XAxis title={'Days'} hideTicks/>
                 <YAxis />
               </XYPlot>

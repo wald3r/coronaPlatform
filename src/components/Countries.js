@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {XYPlot, XAxis, YAxis, VerticalBarSeries, LabelSeries, Crosshair} from 'react-vis'
+import {XYPlot, XAxis, YAxis, VerticalBarSeries, LabelSeries} from 'react-vis'
 import Country from './Country'
 import activeDataFile from '../data/country_information_active.csv'
 import confirmedDataFile from '../data/country_information_confirmed.csv'
@@ -8,9 +8,8 @@ import recoveredDataFile from '../data/country_information_recovered.csv'
 import {csv} from 'd3-request'
 import { Spinner } from 'react-bootstrap'
 
-const Countries = ({ data, info }) => {
+const Countries = ({ data, info, color }) => {
 
-  const [crosshair, setCrosshair] = useState([])
   const [graph, setGraph] = useState(false)
   const [filter, setFilter] = useState('')
 
@@ -19,6 +18,23 @@ const Countries = ({ data, info }) => {
   const [deathsData, setDeathsData] = useState(null)
   const [recoveredData, setRecoveredData] = useState(null)
   const [domain, setDomain] = useState(null)
+
+  const [countryFilter1, setCountryFilter1] = useState('')
+  const [countryFilter2, setCountryFilter2] = useState('')
+
+  const filteredData1 = countryFilter1 === '' ? data : data.filter(d => d.x.includes(countryFilter1))
+  const filteredData2 = countryFilter2 === '' ? filteredData1 : filteredData1.concat(data.filter(d => d.x.includes(countryFilter2)))
+
+
+  const handleCountryFilter1 = (event) => {
+    event.preventDefault()
+    setCountryFilter1(event.target.value)
+  }
+
+  const handleCountryFilter2 = (event) => {
+    event.preventDefault()
+    setCountryFilter2(event.target.value)
+  }
 
   const handleShowGraph = (datapoint, event) => {
     setFilter(datapoint.x)
@@ -44,16 +60,6 @@ const Countries = ({ data, info }) => {
     }) 
   }
 
-  const handleCrosshair = (datapoint, event) => {
-    let arr = []
-    arr.push(data[event.index])
-    setCrosshair(arr)
-  }
-
-  const removeCrosshair = () => {
-    setCrosshair([])
-  }
- 
   if(data === undefined || data === null){
     return(
       <div>
@@ -62,6 +68,9 @@ const Countries = ({ data, info }) => {
     )
   }else{
 
+    if(info === 'Confirmed'){
+      console.log(filteredData2)
+    }
     return (
       <div id={info} style={{overflow: 'auto'}}>
         <Country
@@ -75,45 +84,35 @@ const Countries = ({ data, info }) => {
           domain={domain}
         />
       
-      
+          
           <div>  
             {info} - Cases
+            <br />
+            <br />
+            Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
+            {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
             <XYPlot   
-              onMouseLeave={() => removeCrosshair()}           
               margin={90}
-              yDomain={[0, data[0].y]}
+              yDomain={[0, filteredData2[0].y]}
               xType='ordinal'
-              width={8000}
+              width={60*filteredData2.length}
               height={500}>
               <VerticalBarSeries
-                data={data}
-                color='#760D14'
+                data={filteredData2}
+                color={color}
                 onValueClick={(datapoint, event)=>{
                   handleShowGraph(datapoint, event)
                 }}
-                onNearestX={(datapoint, event) => {
-                  handleCrosshair(datapoint, event)
-                }}
-              
               />
               <LabelSeries 
-                data={data} 
+                data={filteredData2} 
                 getLabel={d => d.y}
                 labelAnchorX='middle'
                 labelAnchorY='top'
                 onValueClick={(datapoint, event)=>{
                   handleShowGraph(datapoint, event)
                 }}
-              />
-              <Crosshair 
-                values={crosshair}
-              >
-              <div>
-                <div>Country:{crosshair[0] === undefined ? '' : crosshair[0].x}</div>
-                <div>{info}:{crosshair[0] === undefined ? '' : crosshair[0].y}</div>
-              </div>
-              </Crosshair>
-             
+              />      
               <XAxis tickLabelAngle={-50}/>
               <YAxis  hideTicks />
               
