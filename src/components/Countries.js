@@ -68,9 +68,6 @@ const Countries = ({ data, info, color }) => {
     )
   }else{
 
-    if(info === 'Confirmed'){
-      console.log(filteredData2)
-    }
     return (
       <div id={info} style={{overflow: 'auto'}}>
         <Country

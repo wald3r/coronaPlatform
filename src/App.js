@@ -69,7 +69,7 @@ const App =() => {
               <tbody>
                 <tr >
                   <td>
-                    <Button variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Pie Chart' : 'Bar Chart'}</Button>
+                    <Button size='sm' variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Switch to Pie Chart' : 'Switch to Bar Chart'}</Button>
                     {globalChar === true ? <GlobalBar  globalData={globalData}/> : <GlobalPie globalData={globalData}/>}
                   </td>
                   <td style={{verticalAlign: 'middle'}}>To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined. </td>
@@ -77,10 +77,10 @@ const App =() => {
                 <tr>
                   <td style={{verticalAlign: 'middle'}}> 
                     A bar chart, which shows all cases per country. <br /><br />
-                    <Button variant={countryChar === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('confirmed')}>Confirmed</Button>
-                    <Button variant={countryChar === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('active')}>Active</Button>
-                    <Button variant={countryChar === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('recovered')}>Recovered</Button>
-                    <Button variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
+                    <Button size='sm' variant={countryChar === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('confirmed')}>Confirmed</Button>
+                    <Button size='sm' variant={countryChar === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('active')}>Active</Button>
+                    <Button size='sm' variant={countryChar === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('recovered')}>Recovered</Button>
+                    <Button size='sm' variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
                   </td>
                   <td >
                     {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={'blue'}/> : ''}
