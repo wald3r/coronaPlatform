@@ -86,7 +86,7 @@ const Countries = ({ data, info, color }) => {
       
           
           <div>  
-            {info} - Cases
+            {info} Cases
             <br />
             <br />
             Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>

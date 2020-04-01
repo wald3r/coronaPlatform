@@ -43,10 +43,17 @@ def main():
  df3 = df3.rename(columns={'Country_Region': 'x', 'Recovered': 'y'})
  df4 = df4.rename(columns={'Country_Region': 'x', 'Confirmed': 'y'})
 
+ df1['yOffset'] = -6
+ df2['yOffset'] = -6
+ df3['yOffset'] = -6
+ df4['yOffset'] = -6
+
  df1 = df1.sort_values(by=['y'], ascending=False)
  df2 = df2.sort_values(by=['y'], ascending=False)
  df3 = df3.sort_values(by=['y'], ascending=False)
  df4 = df4.sort_values(by=['y'], ascending=False)
+
+ print(df1)
 
  df1.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/deaths_information_countries.csv', index=False)
  df2.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/active_information_countries.csv', index=False)
