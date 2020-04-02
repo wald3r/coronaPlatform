@@ -69,7 +69,9 @@ const App =() => {
               <tbody>
               <tr>
                   <td colSpan={2} >
-                    <Choropleth confirmedData={globalCountryConfirmed}/>
+                    <Choropleth 
+                      data={globalCountryConfirmed}
+                    />
                   </td>
                 </tr>
                 <tr >

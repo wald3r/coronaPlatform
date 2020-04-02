@@ -1,7 +1,6 @@
 import pandas as pd
 from datetime import date, timedelta
 import git
-import json
 
 def newestFileString(number):
 
@@ -59,9 +58,6 @@ def main():
  df3.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/recovered_information_countries.csv', index=False)
  df4.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/confirmed_information_countries.csv', index=False)
 
-
- jsonFile = json.load('/home/walder/workspaces/data_visualisation/project/python_data/data/world-110m.json')
- print(jsonFile)
  print('All files generated!')
 
 if __name__ == "__main__":

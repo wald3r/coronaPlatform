@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3694ee-6078-4058-b0ac-be72764ce0db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/global_information_countries.py" beforeDir="false" afterPath="$PROJECT_DIR$/global_information_countries.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/Choropleth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Choropleth.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/global_information_countries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="62" column="106" selection-start-line="62" selection-start-column="106" selection-end-line="62" selection-end-column="106" />
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -120,7 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,6 +151,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -373,8 +370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/global_information_countries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="62" column="106" selection-start-line="62" selection-start-column="106" selection-end-line="62" selection-end-column="106" />
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
