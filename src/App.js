@@ -5,7 +5,7 @@ import {csv} from 'd3-request'
 import GlobalPie from './components/GlobalPie'
 import GlobalBar from './components/GlobalBar'
 import Countries from './components/Countries'
-
+import Choropleth from './components/Choropleth'
 import globalDataFile from './data/global_information.csv'
 import activeCountryDataFile from './data/active_information_countries.csv'
 import deathsCountryDataFile from './data/deaths_information_countries.csv'
@@ -67,6 +67,11 @@ const App =() => {
             <br></br>
             <Table style={table} striped bordered hover>
               <tbody>
+              <tr>
+                  <td colspan={2} >
+                    <Choropleth />
+                  </td>
+                </tr>
                 <tr >
                   <td>
                     <Button size='sm' variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Switch to Pie Chart' : 'Switch to Bar Chart'}</Button>

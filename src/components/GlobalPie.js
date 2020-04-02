@@ -54,7 +54,7 @@ const GlobalPie = ({ globalData }) => {
             width={550}
             height={500}
           />
-           <Badge variant={confirmedFlag === false ? 'outline-primary' : 'primary'}>Confirmed</Badge>     
+           <Button size='sm' variant={confirmedFlag !== false ? 'primary' : 'outline-primary'} onClick={() => setConfirmedFlag(!confirmedFlag)}>Confirmed</Button>
            <Badge variant="danger">Active</Badge>
            <Badge variant="dark">Deaths</Badge>
            <Badge variant="success">Recovered</Badge>

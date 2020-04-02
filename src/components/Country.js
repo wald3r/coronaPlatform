@@ -6,9 +6,9 @@ import { Button, Modal } from 'react-bootstrap'
 
 const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
 
-  const [activeDataFlag, setActiveDataFlag] = useState(false)
-  const [confirmedDataFlag, setConfirmedDataFlag] = useState(true)
-  const [deathsDataFlag, setDeathsDataFlag] = useState(false)
+  const [activeDataFlag, setActiveDataFlag] = useState(true)
+  const [confirmedDataFlag, setConfirmedDataFlag] = useState(false)
+  const [deathsDataFlag, setDeathsDataFlag] = useState(true)
   const [recoveredDataFlag, setRecoveredDataFlag] = useState(false)
 
   const [crosshair1, setCrosshair1] = useState([])
