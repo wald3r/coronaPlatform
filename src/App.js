@@ -76,10 +76,12 @@ const App =() => {
                 </tr>
                 <tr >
                   <td>
-                    <Button size='sm' variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Switch to Pie Chart' : 'Switch to Bar Chart'}</Button>
                     {globalChar === true ? <GlobalBar  globalData={globalData}/> : <GlobalPie globalData={globalData}/>}
                   </td>
-                  <td style={{verticalAlign: 'middle'}}>To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined. </td>
+                  <td style={{verticalAlign: 'middle'}}>
+                    To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined.<br/>
+                    <Button size='sm' variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Switch to Pie Chart' : 'Switch to Bar Chart'}</Button>
+                  </td>
                 </tr>
                 <tr>
                   <td style={{verticalAlign: 'middle'}}> 
