@@ -68,8 +68,8 @@ const App =() => {
             <Table style={table} striped bordered hover>
               <tbody>
               <tr>
-                  <td colspan={2} >
-                    <Choropleth />
+                  <td colSpan={2} >
+                    <Choropleth confirmedData={globalCountryConfirmed}/>
                   </td>
                 </tr>
                 <tr >

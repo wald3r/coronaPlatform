@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps'
 import ReactTooltip from 'react-tooltip'
 
-const Choropleth = () => {
+const Choropleth = ( { confirmedData } ) => {
 
   const [content, setContent] = useState("");
 
@@ -18,8 +18,13 @@ const Choropleth = () => {
                   key={geo.rsmKey} 
                   geography={geo} 
                   onMouseEnter={() => {
-                    const { NAME } = geo.properties
-                    setContent(NAME)
+                    const file = confirmedData.filter(d => (d.x === geo.properties.NAME || d.x === geo.properties.NAME_LONG || d.x === geo.properties.ISO_A2))[0]
+                    if(file !== undefined){
+                      setContent(`${file.x} - Confirmed ${file.y}`)
+                    }
+                    else{
+                      setContent(`${geo.properties.NAME} - No Data`)
+                    }
                   }}
                   onMouseLeave={() => {
                     setContent("");
