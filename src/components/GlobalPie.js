@@ -44,7 +44,6 @@ const GlobalPie = ({ globalData }) => {
     return (
       <div style={container}>
         <div>  
-          <Button size='sm' variant={confirmedFlag !== false ? 'primary' : 'outline-primary'} onClick={() => setConfirmedFlag(!confirmedFlag)}>{confirmedFlag === false ? 'Add Confirmed' : 'Remove Confirmed'}</Button>
           <RadialChart
             showLabels={true}
             radius={200}
