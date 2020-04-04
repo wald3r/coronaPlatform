@@ -67,7 +67,7 @@ const Countries = ({ data, info, color }) => {
       </div>
     )
   }else{
-
+  
     return (
       <div id={info} style={{overflow: 'auto'}}>
         <Country
@@ -80,8 +80,6 @@ const Countries = ({ data, info, color }) => {
           recoveredData={recoveredData}
           domain={domain}
         />
-      
-          
           <div>  
             {info} Cases
             <br />
@@ -102,8 +100,10 @@ const Countries = ({ data, info, color }) => {
                 }}
               />
               <LabelSeries 
-                data={filteredData2} 
-                getLabel={d => d.y}
+                data={filteredData2.map(d => {
+                  return {yOffset: Number(d.yOffset), ...d}}
+                  )} 
+                getLabel={d => Number(d.y)}
                 labelAnchorX='middle'
                 labelAnchorY='top'
                 onValueClick={(datapoint, event)=>{
