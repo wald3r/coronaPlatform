@@ -126,9 +126,11 @@ const Choropleth = ( { data } ) => {
                       fill={d ? colorScale(d.y) : '#BDBDBD'}
                       onMouseEnter={() => {
                         highlightLegend(d ? colorScale(d.y) : '#BDBDBD')
+                        const pop = Number(geo.properties.POP_EST)
                         const file = data.filter((d, index )=> (d.x === geo.properties.NAME || d.x === geo.properties.NAME_LONG || d.x === geo.properties.ISO_A2))[0]
                         if(file !== undefined){
-                          setContent(`${file.x} - Confirmed: ${file.y}`)
+                          const perc = ((Number(file.y) * 100) / pop).toFixed(5)
+                          setContent(`${file.x} <br/>- Population: ${pop}  <br /> - Confirmed: ${file.y} (${perc}%)`)
                         }
                         else{
                           setContent(`${geo.properties.NAME} - No Data`)
@@ -161,7 +163,7 @@ const Choropleth = ( { data } ) => {
                 )}
             </Geographies>
         </ComposableMap>
-        <ReactTooltip>{content}</ReactTooltip>
+        <ReactTooltip html={true}>{content}</ReactTooltip>
       
       </div>
 
