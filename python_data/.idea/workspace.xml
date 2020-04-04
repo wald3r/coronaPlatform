@@ -3,7 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3694ee-6078-4058-b0ac-be72764ce0db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global_information_countries.py" beforeDir="false" afterPath="$PROJECT_DIR$/global_information_countries.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data" beforeDir="false" afterPath="$PROJECT_DIR$/data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/Choropleth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Choropleth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/active_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/active_information_countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/confirmed_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/confirmed_information_countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/country_information_active.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_active.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/country_information_confirmed.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_confirmed.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/country_information_deaths.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_deaths.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/country_information_recovered.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/country_information_recovered.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/deaths_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/deaths_information_countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/global_information.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/global_information.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/recovered_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/recovered_information_countries.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,11 +115,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="405" />
-    <option name="y" value="86" />
-    <option name="width" value="1391" />
-    <option name="height" value="791" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="-2" />
+    <option name="width" value="1680" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -117,6 +126,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,7 +161,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,9 +291,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="405" y="86" width="1391" height="791" extended-state="0" />
+    <frame x="0" y="-2" width="1680" height="1052" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30336258" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25045264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

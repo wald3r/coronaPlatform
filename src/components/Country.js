@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import {XYPlot, XAxis, YAxis, LineSeries, Crosshair, HorizontalGridLines} from 'react-vis'
-
+import { globalColor } from '../config'
 import { Button, Modal } from 'react-bootstrap'
 
 
 const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
 
-  const [activeDataFlag, setActiveDataFlag] = useState(true)
-  const [confirmedDataFlag, setConfirmedDataFlag] = useState(false)
-  const [deathsDataFlag, setDeathsDataFlag] = useState(true)
+  const [activeDataFlag, setActiveDataFlag] = useState(false)
+  const [confirmedDataFlag, setConfirmedDataFlag] = useState(true)
+  const [deathsDataFlag, setDeathsDataFlag] = useState(false)
   const [recoveredDataFlag, setRecoveredDataFlag] = useState(false)
 
   const [crosshair1, setCrosshair1] = useState([])
@@ -70,7 +70,13 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
         data2.push({x: keys[a], y: tmp2})
         data3.push({x: keys[a], y: tmp3})
         data4.push({x: keys[a], y: tmp4})
-        
+        if(a === keys.length -1 ){
+          const tmp = keys[a]+"_bugfix"
+          data1.push({x: tmp, y: tmp1})
+          data2.push({x: tmp, y: tmp2})
+          data3.push({x: tmp, y: tmp3})
+          data4.push({x: tmp, y: tmp4})
+        } 
       }
       data.push(data1)
       data.push(data2)
@@ -92,26 +98,26 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
               <div style={{textAlign: 'center'}}>  
                 <Button size='sm' variant={confirmedDataFlag === true ? 'primary' : 'outline-primary'} onClick={() => setConfirmedDataFlag(!confirmedDataFlag)}>Confirmed</Button>
                 <Button size='sm' variant={activeDataFlag === true ? 'danger' : 'outline-danger'} onClick={() => setActiveDataFlag(!activeDataFlag)}>Active</Button>
-                <Button size='sm' variant={deathsDataFlag === true ? 'dark' : 'outline-dark'} onClick={() => setDeathsDataFlag(!deathsDataFlag)}>Deaths</Button>
+                <Button size='sm' variant={deathsDataFlag === true ? 'warning' : 'outline-warning'} onClick={() => setDeathsDataFlag(!deathsDataFlag)}>Deaths</Button>
                 <Button size='sm' variant={recoveredDataFlag === true ? 'success' : 'outline-success'} onClick={() => setRecoveredDataFlag(!recoveredDataFlag)}>Recovered</Button>
               </div>
               <XYPlot
                 onMouseLeave={() => removeCrosshair()}
-                margin={80}
+                margin={{right: 100}}
                 xType='ordinal'
                 yDomain={[0, domain]}
                 width={800}
                 height={500}>
                 <LineSeries
                   data={activeDataFlag === true ? handleData()[0]: null}
-                  color='red'
+                  color= {globalColor.active}
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 1)
                   }}
                 />
                 <LineSeries
                   data={confirmedDataFlag === true ? handleData()[1]: null}
-                  color='blue'
+                  color={globalColor.confirmed}
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 2)
                   }}
@@ -119,7 +125,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                 />
                 <LineSeries
                   data={deathsDataFlag === true ? handleData()[2]: null}
-                  color='black'
+                  color={globalColor.death}
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 3)
                   }}
@@ -127,7 +133,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
 
                 <LineSeries
                   data={recoveredDataFlag === true ? handleData()[3]: null}
-                  color='green'
+                  color={globalColor.recovered}
                   onNearestX={(datapoint, event) => {
                     handleCrosshair(datapoint, event, 4)
                   }}
@@ -135,7 +141,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                 <Crosshair 
                   values={[crosshair1[0], crosshair2[0], crosshair3[0], crosshair4[0]]}
                 >
-                <div>
+                <div style={{color: '#000000'}}>
                   <div>{date === '' ? '' : `Date:${date}`}</div>
                   <div>{crosshair1[0] === undefined ? '' : `Active:${crosshair1[0].y}`}</div>
                   <div>{crosshair2[0] === undefined ? '' : `Confirmed:${crosshair2[0].y}`}</div>

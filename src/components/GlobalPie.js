@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Spinner, Badge, Button } from 'react-bootstrap'
 import {RadialChart} from 'react-vis'
+import { globalColor } from '../config'
 
 const GlobalPie = ({ globalData }) => {
 
@@ -29,16 +30,16 @@ const GlobalPie = ({ globalData }) => {
     }
 
     var data1 = [
-      {label: `${calcLabel(Number(globalData[0].Confirmed))}%`, angle: Number(globalData[0].Confirmed), color: 'blue'},
-      {label: `${calcLabel(Number(globalData[0].Deaths))}%`, angle: Number(globalData[0].Deaths), color: 'black'},
-      {label: `${calcLabel(Number(globalData[0].Recovered))}%`, angle: Number(globalData[0].Recovered), color: 'green'},
-      {label: `${calcLabel(Number(globalData[0].Active))}%`, angle: Number(globalData[0].Active), color: 'red'}
+      {label: `${calcLabel(Number(globalData[0].Confirmed))}%`, angle: Number(globalData[0].Confirmed), color: globalColor.confirmed},
+      {label: `${calcLabel(Number(globalData[0].Deaths))}%`, angle: Number(globalData[0].Deaths), color: globalColor.death},
+      {label: `${calcLabel(Number(globalData[0].Recovered))}%`, angle: Number(globalData[0].Recovered), color: globalColor.recovered},
+      {label: `${calcLabel(Number(globalData[0].Active))}%`, angle: Number(globalData[0].Active), color: globalColor.active}
     ]
 
     var data2 = [
-      {label: `${calcLabel(Number(globalData[0].Deaths))}%`, angle: Number(globalData[0].Deaths), color: 'black'},
-      {label: `${calcLabel(Number(globalData[0].Recovered))}%`, angle: Number(globalData[0].Recovered), color: 'green'},
-      {label: `${calcLabel(Number(globalData[0].Active))}%`, angle: Number(globalData[0].Active), color: 'red'}
+      {label: `${calcLabel(Number(globalData[0].Deaths))}%`, angle: Number(globalData[0].Deaths), color: globalColor.death},
+      {label: `${calcLabel(Number(globalData[0].Recovered))}%`, angle: Number(globalData[0].Recovered), color: globalColor.recovered},
+      {label: `${calcLabel(Number(globalData[0].Active))}%`, angle: Number(globalData[0].Active), color: globalColor.active}
     ]
 
     return (
@@ -55,7 +56,7 @@ const GlobalPie = ({ globalData }) => {
           />
            <Button size='sm' variant={confirmedFlag !== false ? 'primary' : 'outline-primary'} onClick={() => setConfirmedFlag(!confirmedFlag)}>Confirmed</Button>
            <Badge variant="danger">Active</Badge>
-           <Badge variant="dark">Deaths</Badge>
+           <Badge variant="warning">Deaths</Badge>
            <Badge variant="success">Recovered</Badge>
 
         </div>

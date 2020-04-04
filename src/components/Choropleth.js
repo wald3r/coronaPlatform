@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import ReactTooltip from 'react-tooltip'
 import Country from './Country'
@@ -80,7 +80,6 @@ const Choropleth = ( { data } ) => {
   }
 
   const highlightLegend = (color) => {
-    console.log(color)
     if(color === '#AED6F1') setColor1(true)
     else if(color === '#85C1E9') setColor2(true)
     else if(color === '#5DADE2') setColor3(true)

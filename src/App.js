@@ -11,7 +11,7 @@ import activeCountryDataFile from './data/active_information_countries.csv'
 import deathsCountryDataFile from './data/deaths_information_countries.csv'
 import recoveredCountryDataFile from './data/recovered_information_countries.csv'
 import confirmedCountryDataFile from './data/confirmed_information_countries.csv'
-
+import { globalColor } from './config'
 
 import Footer from './components/Footer'
 
@@ -48,15 +48,17 @@ const App =() => {
       padding: '40px',
       textAlign: 'center',
       position: 'absolute',
-      left: '5%',
-      right: '5%',
+
       transform: `translate(-50px, -50px)` 
     }
     
     const table = {
       textAlign:'center',
-      width: '1500px',
-      tableLayout: 'fixed'
+      tableLayout: 'fixed',
+      width: '80%', 
+      marginLeft: '10%', 
+      marginRight: '10%',
+    
     }
 
     return (
@@ -92,10 +94,10 @@ const App =() => {
                     <Button size='sm' variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
                   </td>
                   <td >
-                    {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={'blue'}/> : ''}
-                    {countryChar === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={'red'}/> : ''}
-                    {countryChar === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={'green'}/> : ''}
-                    {countryChar === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={'black'}/> : ''}
+                    {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={globalColor.confirmed}/> : ''}
+                    {countryChar === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={globalColor.active}/> : ''}
+                    {countryChar === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={globalColor.recovered}/> : ''}
+                    {countryChar === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={globalColor.death}/> : ''}
                   </td>
                 </tr>
               </tbody>

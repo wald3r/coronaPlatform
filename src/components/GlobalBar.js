@@ -1,6 +1,7 @@
 import React from 'react'
 import { Spinner  } from 'react-bootstrap'
 import {XYPlot, XAxis, YAxis, VerticalBarSeriesCanvas, LabelSeries} from 'react-vis'
+import { globalColor } from '../config'
 
 const GlobalBar = ({ globalData }) => {
 
@@ -20,10 +21,10 @@ const GlobalBar = ({ globalData }) => {
   }else{
 
     var data = [
-      {x: "Confirmed", y: Number(globalData[0].Confirmed), yOffset: -5, color: 'blue'},
-      {x: "Deaths", y: Number(globalData[0].Deaths), yOffset: -5, color: 'black'},
-      {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5, color: 'green'},
-      {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: 'red'}
+      {x: "Confirmed", y: Number(globalData[0].Confirmed), yOffset: -5, color: globalColor.confirmed},
+      {x: "Deaths", y: Number(globalData[0].Deaths), yOffset: -5, color: globalColor.death},
+      {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5, color: globalColor.recovered},
+      {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: globalColor.active}
     ]
     return (
       <div style={container}>
