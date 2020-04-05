@@ -21,26 +21,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
     handleGraph(false)
   }
 
-  const handleCrosshair = (datapoint, event, elem) => {
-    let keys = Object.keys(activeData)
-    let arr = []
-    if(elem === 1){
-      arr.push({x: keys[event.index], y: activeData[keys[event.index]]})    
-      setCrosshair1(arr)
-    }
-    else if(elem === 2){
-      arr.push({x: keys[event.index], y: confirmedData[keys[event.index]]})    
-      setCrosshair2(arr)
-    }
-    else if(elem === 3){
-      arr.push({x: keys[event.index], y: deathsData[keys[event.index]]})    
-      setCrosshair3(arr)
-    }else{
-      arr.push({x: keys[event.index], y: recoveredData[keys[event.index]]})    
-      setCrosshair4(arr)
-    }
-    setDate(keys[event.index])
-  }
+
 
   const removeCrosshair = () => {
     setCrosshair1([])
@@ -65,18 +46,12 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
         let tmp2 = confirmedData[keys[a]]
         let tmp3 = deathsData[keys[a]]
         let tmp4 = recoveredData[keys[a]]
-  
-        data1.push({x: keys[a], y: tmp1})
-        data2.push({x: keys[a], y: tmp2})
-        data3.push({x: keys[a], y: tmp3})
-        data4.push({x: keys[a], y: tmp4})
-        if(a === keys.length -1 ){
-          const tmp = keys[a]+"_bugfix"
-          data1.push({x: tmp, y: tmp1})
-          data2.push({x: tmp, y: tmp2})
-          data3.push({x: tmp, y: tmp3})
-          data4.push({x: tmp, y: tmp4})
-        } 
+        if(Number(tmp2) !== 0){
+          data1.push({x: keys[a], y: tmp1})
+          data2.push({x: keys[a], y: tmp2})
+          data3.push({x: keys[a], y: tmp3})
+          data4.push({x: keys[a], y: tmp4})
+        }
       }
       data.push(data1)
       data.push(data2)
@@ -86,7 +61,37 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
       return data
   
     }
-   
+
+    const handleCrosshair = (datapoint, event, elem) => {
+      let keys = handleData()[0].map(data => data.x)
+      let arr = []
+      let tmp = confirmedData[keys[event.index]]
+      console.log('y', tmp)
+      console.log('keys', keys)
+      console.log(event.index, keys[event.index])
+      console.log(confirmedData)
+      if(Number(tmp) === 0){
+        return
+      }
+      if(elem === 1){
+        arr.push({x: keys[event.index], y: activeData[keys[event.index]]})    
+        setCrosshair1(arr)
+      }
+      else if(elem === 2){
+        arr.push({x: keys[event.index], y: confirmedData[keys[event.index]]})    
+        setCrosshair2(arr)
+      }
+      else if(elem === 3){
+        arr.push({x: keys[event.index], y: deathsData[keys[event.index]]})    
+        setCrosshair3(arr)
+      }else{
+        arr.push({x: keys[event.index], y: recoveredData[keys[event.index]]})    
+        setCrosshair4(arr)
+      }
+      console.log(arr)
+      setDate(keys[event.index])
+    }
+
     return (
 
       <Modal size="lg" show={showGraph} onHide={handleClose} animation={true}>
@@ -119,6 +124,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                   data={confirmedDataFlag === true ? handleData()[1]: null}
                   color={globalColor.confirmed}
                   onNearestX={(datapoint, event) => {
+                    console.log('datapoint', datapoint)
                     handleCrosshair(datapoint, event, 2)
                   }}
           
@@ -142,7 +148,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                   values={[crosshair1[0], crosshair2[0], crosshair3[0], crosshair4[0]]}
                 >
                 <div style={{color: '#000000'}}>
-                  <div>{date === '' ? '' : `Date:${date}`}</div>
+                  <div>{date === '' ? '' : `Day:${date}`}</div>
                   <div>{crosshair1[0] === undefined ? '' : `Active:${crosshair1[0].y}`}</div>
                   <div>{crosshair2[0] === undefined ? '' : `Confirmed:${crosshair2[0].y}`}</div>
                   <div>{crosshair3[0] === undefined ? '' : `Deaths:${crosshair3[0].y}`}</div>
@@ -151,7 +157,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                 </Crosshair>
             
                 <HorizontalGridLines />
-                <XAxis title={'Days'} hideTicks/>
+                <XAxis title={'Days'} hideTicks />
                 <YAxis />
               </XYPlot>
             </div>
