@@ -27,7 +27,7 @@ const GlobalBar = ({ globalData }) => {
       {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: globalColor.active}
     ]
     return (
-      <div style={container}>
+      <div id='idGlobalBar' style={container}>
         <div>  
           <XYPlot
             
@@ -39,16 +39,17 @@ const GlobalBar = ({ globalData }) => {
           >
           <VerticalBarSeriesCanvas
             data={data}
-            //color='#760D14'
           />
           <LabelSeries 
             data={data} 
             getLabel={d => d.y}
             labelAnchorX='middle'
             labelAnchorY='top'
+            style={{fill: '#FFFFFF'}}
+            color='#FFFFFF'
           />
         
-          <XAxis />
+          <XAxis style={{text: {fill: '#FFFFFF'} }}/>
           <YAxis hideTicks hideLine />
           </XYPlot>
         </div>

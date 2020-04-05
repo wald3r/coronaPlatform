@@ -66,10 +66,6 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
       let keys = handleData()[0].map(data => data.x)
       let arr = []
       let tmp = confirmedData[keys[event.index]]
-      console.log('y', tmp)
-      console.log('keys', keys)
-      console.log(event.index, keys[event.index])
-      console.log(confirmedData)
       if(Number(tmp) === 0){
         return
       }
@@ -108,7 +104,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
               </div>
               <XYPlot
                 onMouseLeave={() => removeCrosshair()}
-                margin={{right: 100}}
+                margin={{left: 70, right: 100}}
                 xType='ordinal'
                 yDomain={[0, domain]}
                 width={800}

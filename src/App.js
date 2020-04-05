@@ -44,12 +44,18 @@ const App =() => {
     })  
   }, [])
 
+    const globalStyle = {
+      backgroundColor: '#3d444a'       
+    }
+
     const containerStyle = {
       padding: '40px',
       textAlign: 'center',
       position: 'absolute',
+      color: '#FFFFFF',
+      transform: `translate(-50px, -50px)`,
+      backgroundColor: '#3d444a' 
 
-      transform: `translate(-50px, -50px)` 
     }
     
     const table = {
@@ -58,16 +64,15 @@ const App =() => {
       width: '80%', 
       marginLeft: '10%', 
       marginRight: '10%',
-    
     }
 
     return (
-      <div>
+      <div style={globalStyle}>
           <div style={containerStyle}>
             <br/>
-            <h2>COVID-19 GRAPHS</h2>
+            <h2>COVID-19 Stats</h2>
             <br></br>
-            <Table style={table} striped bordered hover>
+            <Table responsive variant="dark" style={table} striped bordered hover>
               <tbody>
               <tr>
                   <td colSpan={2} >

@@ -11,7 +11,8 @@ const Footer = () => {
     width: '100%',
     opacity: '0.9',
     bottom: '0',
-    left: '0'
+    left: '0',
+    color: '#ffffff'
   }
 
   return(

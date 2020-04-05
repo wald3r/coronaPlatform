@@ -106,11 +106,12 @@ const Countries = ({ data, info, color }) => {
                 getLabel={d => Number(d.y)}
                 labelAnchorX='middle'
                 labelAnchorY='top'
+                style={{fill: '#FFFFFF'}}
                 onValueClick={(datapoint, event)=>{
                   handleShowGraph(datapoint, event)
                 }}
               />      
-              <XAxis tickLabelAngle={-50}/>
+              <XAxis style={{fill: '#FFFFFF'}} tickLabelAngle={-50}/>
               <YAxis  hideTicks />
               
             </XYPlot>

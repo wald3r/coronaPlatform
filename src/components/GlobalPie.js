@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
-import { Spinner, Badge, Button } from 'react-bootstrap'
+import React from 'react'
+import { Spinner, Badge } from 'react-bootstrap'
 import {RadialChart} from 'react-vis'
 import { globalColor } from '../config'
 
 const GlobalPie = ({ globalData }) => {
-
-  const [confirmedFlag, setConfirmedFlag] = useState(false)
-
 
   const container = {
     height: '100%',
@@ -25,18 +22,11 @@ const GlobalPie = ({ globalData }) => {
 
     const calcLabel = (number) => {
       
-      let totalNumber = confirmedFlag === false ? Number(globalData[0].Confirmed) : Number(globalData[0].Confirmed) * 2 
+      let totalNumber = Number(globalData[0].Confirmed) 
       return Math.round(((number * 100) / totalNumber), 2)
     }
 
-    var data1 = [
-      {label: `${calcLabel(Number(globalData[0].Confirmed))}%`, angle: Number(globalData[0].Confirmed), color: globalColor.confirmed},
-      {label: `${calcLabel(Number(globalData[0].Deaths))}%`, angle: Number(globalData[0].Deaths), color: globalColor.death},
-      {label: `${calcLabel(Number(globalData[0].Recovered))}%`, angle: Number(globalData[0].Recovered), color: globalColor.recovered},
-      {label: `${calcLabel(Number(globalData[0].Active))}%`, angle: Number(globalData[0].Active), color: globalColor.active}
-    ]
-
-    var data2 = [
+    var data = [
       {label: `${calcLabel(Number(globalData[0].Deaths))}%`, angle: Number(globalData[0].Deaths), color: globalColor.death},
       {label: `${calcLabel(Number(globalData[0].Recovered))}%`, angle: Number(globalData[0].Recovered), color: globalColor.recovered},
       {label: `${calcLabel(Number(globalData[0].Active))}%`, angle: Number(globalData[0].Active), color: globalColor.active}
@@ -44,21 +34,20 @@ const GlobalPie = ({ globalData }) => {
 
     return (
       <div style={container}>
-        <div>  
+        <div>
+          <Badge variant="danger">Active</Badge>
+          <Badge variant="warning">Deaths</Badge>
+          <Badge variant="success">Recovered</Badge>
           <RadialChart
             showLabels={true}
             radius={200}
             labelsRadiusMultiplier={1.2}
             colorType="literal"
-            data={confirmedFlag === false ? data2 : data1}
+            data={data}
             width={550}
             height={500}
+            style={{text: {fill: '#FFFFFF'}}}
           />
-           <Button size='sm' variant={confirmedFlag !== false ? 'primary' : 'outline-primary'} onClick={() => setConfirmedFlag(!confirmedFlag)}>Confirmed</Button>
-           <Badge variant="danger">Active</Badge>
-           <Badge variant="warning">Deaths</Badge>
-           <Badge variant="success">Recovered</Badge>
-
         </div>
       </div>
     )
