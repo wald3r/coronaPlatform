@@ -13,6 +13,6 @@ react-vis
 react-bootstrap  
 axios  
 d3-request  
-react-router-dom  
+react-simple-map
     
 
