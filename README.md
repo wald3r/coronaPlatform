@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # coronaPlatform
 
-A web platform to visualize collected data about the corona virus. 
+A web platform to visualize collected data about the Coronavirus. 
 
 
 # Used Libraries:
@@ -13,6 +13,6 @@ react-vis
 react-bootstrap  
 axios  
 d3-request  
-react-router-dom  
+react-simple-map
     
 
