@@ -60,14 +60,13 @@ const Countries = ({ data, info, color }) => {
     }) 
   }
 
-  if(data === undefined || data === null){
+  if(filteredData2 === undefined || filteredData2 === null){
     return(
       <div>
         <Spinner animation="border" role="status" /> Loading...     
       </div>
     )
   }else{
-  
     return (
       <div id={info} style={{overflow: 'auto'}}>
         <Country
@@ -85,36 +84,38 @@ const Countries = ({ data, info, color }) => {
             <br />
             <br />
             Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
-            {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
-            <XYPlot   
-              margin={90}
-              yDomain={[0, filteredData2[0].y]}
-              xType='ordinal'
-              width={60*filteredData2.length}
-              height={500}>
-              <VerticalBarSeries
-                data={filteredData2}
-                color={color}
-                onValueClick={(datapoint, event)=>{
-                  handleShowGraph(datapoint, event)
-                }}
-              />
-              <LabelSeries 
-                data={filteredData2.map(d => {
-                  return {yOffset: Number(d.yOffset), ...d}}
-                  )} 
-                getLabel={d => Number(d.y)}
-                labelAnchorX='middle'
-                labelAnchorY='top'
-                style={{fill: '#FFFFFF'}}
-                onValueClick={(datapoint, event)=>{
-                  handleShowGraph(datapoint, event)
-                }}
-              />      
-              <XAxis style={{fill: '#FFFFFF'}} tickLabelAngle={-50}/>
-              <YAxis  hideTicks />
-              
-            </XYPlot>
+            {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
+            {filteredData2.length === 0 ? 'No data available!' : 
+              <XYPlot   
+                margin={{left: 90, bottom: 100, top: 90, right: 90}}
+                yDomain={[0, Number(filteredData2[0].y)]}
+                xType='ordinal'
+                width={60*filteredData2.length}
+                height={500}>
+                <VerticalBarSeries
+                  data={filteredData2}
+                  color={color}
+                  onValueClick={(datapoint, event)=>{
+                    handleShowGraph(datapoint, event)
+                  }}
+                />
+                <LabelSeries 
+                  data={filteredData2.map(d => {
+                    return {yOffset: Number(d.yOffset), y: Number(d.y), ...d}}
+                    )} 
+                  getLabel={d => Number(d.y)}
+                  labelAnchorX='middle'
+                  labelAnchorY='top'
+                  style={{fill: '#FFFFFF'}}
+                  onValueClick={(datapoint, event)=>{
+                    handleShowGraph(datapoint, event)
+                  }}
+                />      
+                <XAxis style={{fill: '#FFFFFF'}} tickLabelAngle={-60}/>
+                <YAxis  hideTicks />
+                
+              </XYPlot>
+            }
           </div>
         </div>
     )

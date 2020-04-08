@@ -22,8 +22,6 @@ const App =() => {
   const [globalCountryDeaths, setGlobalCountryDeaths] = useState(null)
   const [globalCountryRecovered, setGlobalCountryRecovered] = useState(null)
   const [globalCountryActive, setGlobalCountryActive] = useState(null)
-
-  const [globalChar, setGlobalChar] = useState(true)
   const [countryChar, setCountryChar] = useState('confirmed')
 
   useEffect(() => {
@@ -64,13 +62,14 @@ const App =() => {
       width: '80%', 
       marginLeft: '10%', 
       marginRight: '10%',
+
     }
 
     return (
       <div style={globalStyle}>
           <div style={containerStyle}>
             <br/>
-            <h2>COVID-19 Stats</h2>
+            <h2>COVID-19 Statistics</h2>
             <br></br>
             <Table responsive variant="dark" style={table} striped bordered hover>
               <tbody>
@@ -82,12 +81,13 @@ const App =() => {
                   </td>
                 </tr>
                 <tr >
-                  <td>
-                    {globalChar === true ? <GlobalBar  globalData={globalData}/> : <GlobalPie globalData={globalData}/>}
-                  </td>
                   <td style={{verticalAlign: 'middle'}}>
-                    To the right a bar chart can be observed, which represents the newest Covid-19 numbers of all countries combined.<br/>
-                    <Button size='sm' variant='secondary' onClick={() => setGlobalChar(!globalChar)}>{globalChar === true ? 'Switch to Pie Chart' : 'Switch to Bar Chart'}</Button>
+                    Worldwide cases of the Coronavirus
+                    <GlobalBar  globalData={globalData}/>
+                  </td>
+                  <td >
+                    Worldwide distribution of confirmed cases
+                    <GlobalPie globalData={globalData}/>
                   </td>
                 </tr>
                 <tr>

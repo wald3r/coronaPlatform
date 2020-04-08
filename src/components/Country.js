@@ -84,7 +84,6 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
         arr.push({x: keys[event.index], y: recoveredData[keys[event.index]]})    
         setCrosshair4(arr)
       }
-      console.log(arr)
       setDate(keys[event.index])
     }
 
@@ -120,7 +119,6 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                   data={confirmedDataFlag === true ? handleData()[1]: null}
                   color={globalColor.confirmed}
                   onNearestX={(datapoint, event) => {
-                    console.log('datapoint', datapoint)
                     handleCrosshair(datapoint, event, 2)
                   }}
           

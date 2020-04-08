@@ -9,7 +9,8 @@ const GlobalPie = ({ globalData }) => {
     height: '100%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    overflow: 'auto',
   }
 
   if(globalData === undefined || globalData === null){
@@ -46,7 +47,7 @@ const GlobalPie = ({ globalData }) => {
             data={data}
             width={550}
             height={500}
-            style={{text: {fill: '#FFFFFF'}}}
+            labelsStyle={{fill: '#FFFFFF'}}
           />
         </div>
       </div>

@@ -9,7 +9,8 @@ const GlobalBar = ({ globalData }) => {
     height: '100%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    overflow: 'auto'
   }
 
   if(globalData === undefined || globalData === null){
