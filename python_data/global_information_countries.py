@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import date, timedelta
 import git
+import os
 
 def newestFileString(number):
 
@@ -11,7 +12,7 @@ def newestFileString(number):
 
 def main():
 
- g = git.cmd.Git('/home/walder/workspaces/data_visualisation/project/python_data/data')
+ g = git.cmd.Git(os.getcwd()+'/data')
  g.pull()
  days = 0
 
@@ -53,10 +54,13 @@ def main():
  df3 = df3.sort_values(by=['y'], ascending=False)
  df4 = df4.sort_values(by=['y'], ascending=False)
 
- df1.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/deaths_information_countries.csv', index=False)
- df2.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/active_information_countries.csv', index=False)
- df3.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/recovered_information_countries.csv', index=False)
- df4.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/confirmed_information_countries.csv', index=False)
+ var = os.getcwd()
+ mod_var = var.replace('/python_data', '/')
+
+ df1.to_csv(mod_var+'src/data/deaths_information_countries.csv', index=False)
+ df2.to_csv(mod_var+'src/data/active_information_countries.csv', index=False)
+ df3.to_csv(mod_var+'src/data/recovered_information_countries.csv', index=False)
+ df4.to_csv(mod_var+'src/data/confirmed_information_countries.csv', index=False)
 
  print('All files generated!')
 

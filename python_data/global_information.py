@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import date, timedelta
 import git
+import os
 
 def newestFileString(number):
 
@@ -11,7 +12,7 @@ def newestFileString(number):
 
 def main():
 
- g = git.cmd.Git('/home/walder/workspaces/data_visualisation/project/python_data/data')
+ g = git.cmd.Git(os.getcwd()+'/data')
  g.pull()
  days = 0
 
@@ -37,7 +38,10 @@ def main():
  #df1 = pd.DataFrame(data=[None, None, None], columns=['a'])
 
  print(df)
- df.to_csv('/home/walder/workspaces/data_visualisation/project/src/data/global_information.csv', index=False)
+
+ var = os.getcwd()
+ mod_var = var.replace('/python_data', '/')
+ df.to_csv(mod_var+'src/data/global_information.csv', index=False)
 
 
 if __name__ == "__main__":
