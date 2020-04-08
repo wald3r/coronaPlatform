@@ -12,7 +12,7 @@ import deathsCountryDataFile from './data/deaths_information_countries.csv'
 import recoveredCountryDataFile from './data/recovered_information_countries.csv'
 import confirmedCountryDataFile from './data/confirmed_information_countries.csv'
 import { globalColor } from './config'
-
+import Numbers from './components/Numbers'
 import Footer from './components/Footer'
 
 const App =() => {
@@ -73,6 +73,11 @@ const App =() => {
             <br></br>
             <Table responsive variant="dark" style={table} striped bordered hover>
               <tbody>
+              <tr>
+                <td colSpan={2} >
+                    <Numbers data={globalData}/>
+                  </td>
+              </tr>
               <tr>
                   <td colSpan={2} >
                     <Choropleth 
