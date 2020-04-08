@@ -5,7 +5,7 @@ import os
 
 def newestFileString(number):
 
- string = 'data/csse_covid_19_data/csse_covid_19_daily_reports/'
+ string = os.getcwd()+'/data/csse_covid_19_data/csse_covid_19_daily_reports/'
  today = date.today() - timedelta(days=number)
  d1 = today.strftime("%m-%d-%Y")
  return string+d1+'.csv'

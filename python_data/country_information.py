@@ -7,10 +7,10 @@ def main():
     g = git.cmd.Git(os.getcwd()+'/data')
     g.pull()
 
-    df = pd.read_csv('data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
+    df = pd.read_csv(os.getcwd()+'/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
 
-    df1 = pd.read_csv('data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv')
-    df2 = pd.read_csv('data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
+    df1 = pd.read_csv(os.getcwd()+'/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv')
+    df2 = pd.read_csv(os.getcwd()+'/data/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
 
     df = df.drop(["Province/State", "Lat", "Long"], axis=1)
     df = df.groupby("Country/Region").aggregate("sum")
