@@ -14,6 +14,7 @@ import confirmedCountryDataFile from './data/confirmed_information_countries.csv
 import { globalColor } from './config'
 import Numbers from './components/Numbers'
 import Footer from './components/Footer'
+import './main.css'
 
 const App =() => {
 
@@ -42,65 +43,28 @@ const App =() => {
     })  
   }, [])
 
-    const globalStyle = {
-      backgroundColor: '#202427', 
-      textAlign: 'center',
-      color: '#FFFFFF',
-      
-    }
-    
-    const table = {
-      textAlign:'center',
-      tableLayout: 'fixed',
-      width: '90%', 
-      marginLeft: '5%', 
-      marginRight: '5%',
-
-    }
-
-    const grid = {
-      display: 'grid',
-      gridTemplateColumns: "auto auto",
-      gridGap: '10px',
-      padding: '10px',
-      marginLeft: '10%', 
-      marginRight: '10%',
-    }
-
-    const singleGridSettings1 = {
-      backgroundColor: '#3d444a',
-      borderRadius: '25px',
-      alignItems: 'center',
-
-    }
-    const singleGridSettings2= {
-      backgroundColor: '#3d444a',
-      gridColumn: '1 / span 2',
-      borderRadius: '25px',
-
-    }
-
+  
     return (
-      <div style={globalStyle}>
-            <div style={grid}>
-              <div style={singleGridSettings1}>
+      <div className='global' >
+            <div className='grid-general grid'>
+              <div className='singleGridSettings1'>
                 <h2>COVID-19 Statistics</h2>
               </div>
-              <div style={singleGridSettings1}>
+              <div className='singleGridSettings2'>
                 <Numbers data={globalData}/>
               </div>
-              <div style={singleGridSettings1}>
+              <div className='singleGridSettings1'>
                 <GlobalBar  globalData={globalData}/>
               </div>
-              <div style={singleGridSettings1}>
+              <div className='singleGridSettings2'>
                 <Choropleth data={globalCountryConfirmed}/>
               </div>
-              <div style={singleGridSettings1}>
+              <div className='singleGridSettings1'>
                 <GlobalPie globalData={globalData}/>
 
               </div>
-              <div style={singleGridSettings1}>
-              <Table responsive  style={table} >
+              <div className='singleGridSettings2'>
+              <Table responsive  className='table' >
               <tbody>
        
                 <tr>

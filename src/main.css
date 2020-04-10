@@ -1,0 +1,49 @@
+
+.global{  
+  background-color: #202427;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+
+.table{
+  text-align: center;
+  table-layout: fixed;
+  width: 90%;
+  margin-left: 5%; 
+  margin-right: 5%;
+}
+
+@media (min-width: 600px) {
+  .grid { 
+    grid-template-columns: auto; 
+  }
+}
+
+@media (min-width: 768px) {
+  .grid { 
+    grid-template-columns: auto auto; 
+  }
+}
+
+.grid-general{
+  display: grid;
+  grid-gap: 10px;
+  padding: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.singleGridSettings1 {
+  background-color: #3d444a;
+  border-radius: 25px;
+  float: left;
+  width: 100%;
+
+}
+.singleGridSettings2{
+  background-color: #3d444a;
+  border-radius: 25px;
+  float: left;
+  width: 100%;
+}

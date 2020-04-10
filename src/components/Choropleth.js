@@ -112,7 +112,6 @@ const Choropleth = ( { data } ) => {
         <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#2874A6', outline: color6 ? 'solid' : 'none' }}/>
         <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#21618C', outline: color7 ? 'solid' : 'none' }}/>
         <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#1B4F72', outline: color8 ? 'solid' : 'none' }}/><br/>
-        <Button size='sm' href={'#idGlobalBar'}>More...</Button>
         <ComposableMap data-tip="" > 
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
