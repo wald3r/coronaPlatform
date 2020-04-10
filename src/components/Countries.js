@@ -68,7 +68,7 @@ const Countries = ({ data, info, color }) => {
     )
   }else{
     return (
-      <div id={info} style={{overflow: 'auto'}}>
+      <div style={{overflow: 'auto'}}>
         <Country
           handleGraph={setGraph}
           showGraph={graph}
@@ -80,9 +80,7 @@ const Countries = ({ data, info, color }) => {
           domain={domain}
         />
           <div>  
-            {info} Cases
-            <br />
-            <br />
+            <br/>
             Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
             {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
             {filteredData2.length === 0 ? 'No data available!' : 

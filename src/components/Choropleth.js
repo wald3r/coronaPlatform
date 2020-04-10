@@ -8,7 +8,7 @@ import confirmedDataFile from '../data/country_information_confirmed.csv'
 import deathsDataFile from '../data/country_information_deaths.csv'
 import recoveredDataFile from '../data/country_information_recovered.csv'
 import { scaleQuantile } from "d3-scale"
-import { Spinner, Button } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import jsonFile from '../data/world-110m.json'
 
 const Choropleth = ( { data } ) => {

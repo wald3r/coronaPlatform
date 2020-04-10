@@ -65,23 +65,21 @@ const App =() => {
               </div>
               <div className='singleGridSettings2'>
               <Table responsive  className='table' >
-              <tbody>
-       
-                <tr>
-                  <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
-                    A bar chart, which shows all cases per country. <br /><br />
-                    <Button size='sm' variant={countryChar === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('confirmed')}>Confirmed</Button>
-                    <Button size='sm' variant={countryChar === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('active')}>Active</Button>
-                    <Button size='sm' variant={countryChar === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('recovered')}>Recovered</Button>
-                    <Button size='sm' variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
-                 
-                    {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={globalColor.confirmed}/> : ''}
-                    {countryChar === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={globalColor.active}/> : ''}
-                    {countryChar === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={globalColor.recovered}/> : ''}
-                    {countryChar === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={globalColor.death}/> : ''}
-                  </td>
-                </tr>
-              </tbody>
+                <tbody>
+                  <tr>
+                    <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
+                      <Button size='sm' variant={countryChar === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('confirmed')}>Confirmed</Button>
+                      <Button size='sm' variant={countryChar === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('active')}>Active</Button>
+                      <Button size='sm' variant={countryChar === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('recovered')}>Recovered</Button>
+                      <Button size='sm' variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
+                  
+                      {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={globalColor.confirmed}/> : ''}
+                      {countryChar === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={globalColor.active}/> : ''}
+                      {countryChar === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={globalColor.recovered}/> : ''}
+                      {countryChar === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={globalColor.death}/> : ''}
+                    </td>
+                  </tr>
+                </tbody>
             </Table>
               </div>
             </div>

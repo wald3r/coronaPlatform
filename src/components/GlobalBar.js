@@ -5,13 +5,7 @@ import { globalColor } from '../config'
 
 const GlobalBar = ({ globalData }) => {
 
-  const container = {
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'auto'
-  }
+ 
 
   if(globalData === undefined || globalData === null){
     return(
@@ -28,8 +22,8 @@ const GlobalBar = ({ globalData }) => {
       {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: globalColor.active}
     ]
     return (
-      <div id='idGlobalBar' style={container}>
-        <div>  
+      <div>
+        
           <XYPlot
             
             margin={50}
@@ -53,7 +47,6 @@ const GlobalBar = ({ globalData }) => {
           <XAxis style={{text: {fill: '#FFFFFF'} }}/>
           <YAxis hideTicks hideLine />
           </XYPlot>
-        </div>
       </div>
     )
   }
