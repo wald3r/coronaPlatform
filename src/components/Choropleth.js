@@ -102,7 +102,7 @@ const Choropleth = ( { data, colorRange, info } ) => {
         <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[4], outline: color5 ? 'solid' : 'none' }}/>
         <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[5], outline: color6 ? 'solid' : 'none' }}/>
         <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[6], outline: color7 ? 'solid' : 'none' }}/>
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[7], outline: color8 ? 'solid' : 'none' }}/><br/>
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[7], outline: color8 ? 'solid' : 'none' }}/>
         <ComposableMap data-tip="" > 
             <Geographies geography={geoUrl}>
               {({ geographies }) =>

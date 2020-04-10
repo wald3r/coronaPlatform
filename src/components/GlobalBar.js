@@ -17,9 +17,9 @@ const GlobalBar = ({ globalData }) => {
 
     var data = [
       {x: "Confirmed", y: Number(globalData[0].Confirmed), yOffset: -5, color: globalColor.confirmed},
+      {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: globalColor.active},
       {x: "Deaths", y: Number(globalData[0].Deaths), yOffset: -5, color: globalColor.death},
-      {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5, color: globalColor.recovered},
-      {x: "Active", y: Number(globalData[0].Active), yOffset: -5, color: globalColor.active}
+      {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5, color: globalColor.recovered}
     ]
     return (
       <div>
