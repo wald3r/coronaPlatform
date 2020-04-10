@@ -46,7 +46,7 @@ const App =() => {
   
     return (
       <div className='global' >
-            <div className='grid-general grid'>
+            <div className='grid-general main-grid'>
               <div className='singleGridSettings1'>
                 <h2>COVID-19 Statistics</h2>
               </div>

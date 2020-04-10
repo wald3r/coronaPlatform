@@ -7,31 +7,42 @@
 
 
 .table{
-  text-align: center;
   table-layout: fixed;
   width: 90%;
   margin-left: 5%; 
   margin-right: 5%;
 }
 
-@media (min-width: 600px) {
-  .grid { 
+@media (min-width: 1000px) {
+  .main-grid { 
     grid-template-columns: auto; 
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .numbers-grid{
+    grid-template-columns: auto auto auto auto;
   }
 }
 
-@media (min-width: 768px) {
-  .grid { 
+@media (min-width: 1001px) {
+  .main-grid { 
     grid-template-columns: auto auto; 
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .numbers-grid{
+    grid-template-columns: auto auto auto auto;
   }
 }
+
+
+
 
 .grid-general{
   display: grid;
   grid-gap: 10px;
   padding: 10px;
-  margin-left: 10%;
-  margin-right: 10%;
+
 }
 
 .singleGridSettings1 {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 import { globalColor } from '../config'
+import '../main.css'
 
 const Numbers = ( { data } ) => {
 
@@ -8,7 +9,7 @@ const Numbers = ( { data } ) => {
 
  
     return (
-      <div style={{display: 'grid', gridTemplateColumns: 'auto auto auto auto'}}>
+      <div className='numbers-grid grid-general'>
         <div><div>Confirmed Cases</div>
         <div style={{color: globalColor.confirmed, fontSize: '40px'}}>{data[0].Confirmed}</div></div>
 
