@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../node_modules/react-vis/dist/style.css'
 import { Table, Button } from 'react-bootstrap'
-import {csv} from 'd3-request'
+import {csv, json} from 'd3-request'
 import GlobalPie from './components/GlobalPie'
 import GlobalBar from './components/GlobalBar'
 import Countries from './components/Countries'
@@ -15,6 +15,8 @@ import { globalColor, confirmedColorRange, activeColorRange, deathColorRange, re
 import Numbers from './components/Numbers'
 import Footer from './components/Footer'
 import './main.css'
+import jsonFile from './data/world-110m.json'
+
 
 const App =() => {
 
@@ -41,10 +43,30 @@ const App =() => {
     }) 
     csv(deathsCountryDataFile, (err, data) => {
       setGlobalCountryDeaths(data)
-    })  
+    })
   }, [])
 
-  
+    
+    const handleConfirmedData = () => {
+      if(globalCountryConfirmed !== undefined && globalCountryConfirmed !== null){
+
+        let test = globalCountryConfirmed.map(data => {
+          const country = jsonFile.objects.ne_110m_admin_0_countries.geometries.filter(geo => (geo.properties.NAME === data.x || data.x === geo.properties.NAME_LONG || data.x === geo.properties.ISO_A2))[0]
+          if(country !== undefined){
+            const perc = ((Number(data.y) * 100) / country.properties.POP_EST).toFixed(4)
+            return {x: data.x, y: Number(perc), yOffset: data.yOffset}
+          }else{
+            return {x: data.x, y: 0, yOffset: data.yOffset}
+          }
+        })
+        test = test.sort((a, b) => {
+          return Number(b.y) - Number(a.y)
+        })
+        return test
+      }
+      return null
+    }
+ 
     return (
       <div className='global' >
             <div className='grid-general main-grid'>
@@ -54,13 +76,11 @@ const App =() => {
               <div className='singleGridSettings2'>
                 <Numbers data={globalData}/>
               </div>
-              <div className='singleGridSettings1'>
-                <GlobalBar  globalData={globalData}/>
-              </div>
-              <div className='singleGridSettings2'>
+             
+              <div className='singleGridSettings3'>
                 <Button size='sm' variant={choroplethFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('confirmed')}>Confirmed</Button>
                 <Button size='sm' variant={choroplethFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('active')}>Active</Button>
-                <Button size='sm' variant={choroplethFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('death')}>Death</Button>
+                <Button size='sm' variant={choroplethFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('death')}>Deaths</Button>
                 <Button size='sm' variant={choroplethFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('recovered')}>Recovered</Button>
                 <br/>
                 <br/>
@@ -72,27 +92,42 @@ const App =() => {
 
               </div>
               <div className='singleGridSettings1'>
+                  <GlobalBar  globalData={globalData}/>
+              </div>
+              <div className='singleGridSettings1'>
                 <GlobalPie globalData={globalData}/>
 
               </div>
-              <div className='singleGridSettings2'>
-              <Table responsive  className='table' >
-                <tbody>
-                  <tr>
-                    <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
-                      <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
-                      <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
-                      <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Death</Button>
-                      <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button><br />
-                  
-                      {countriesFlag === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={globalColor.confirmed}/> : ''}
-                      {countriesFlag === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={globalColor.active}/> : ''}
-                      {countriesFlag === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={globalColor.recovered}/> : ''}
-                      {countriesFlag === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={globalColor.death}/> : ''}
-                    </td>
-                  </tr>
-                </tbody>
-            </Table>
+              <div className='singleGridSettings4'>
+                <Table responsive  className='table' >
+                  <tbody>
+                    <tr>
+                      <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
+                        <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                        <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                        <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
+                        <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button><br />
+                    
+                        {countriesFlag === 'confirmed' ? <Countries data={globalCountryConfirmed} color={globalColor.confirmed}/> : ''}
+                        {countriesFlag === 'active' ? <Countries data={globalCountryActive} color={globalColor.active}/> : ''}
+                        {countriesFlag === 'recovered' ? <Countries data={globalCountryRecovered} color={globalColor.recovered}/> : ''}
+                        {countriesFlag === 'death' ? <Countries data={globalCountryDeaths} color={globalColor.death}/> : ''}
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </div>
+              <div className='singleGridSettings4'>
+                <Table responsive  className='table' >
+                  <tbody>
+                    <tr>
+                      <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
+                    
+                        <Countries data={handleConfirmedData()} color={globalColor.confirmed}/> 
+                       </td>
+                    </tr>
+                  </tbody>
+                </Table>
               </div>
             </div>
           <br></br>

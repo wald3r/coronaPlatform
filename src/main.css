@@ -15,7 +15,7 @@
 
 @media (max-width: 1000px) {
   .main-grid { 
-    grid-template-columns: 1fr; 
+    grid-template-columns: auto; 
     margin-left: 10%;
     margin-right: 10%;
   }
@@ -26,7 +26,7 @@
 
 @media (min-width: 1001px) {
   .main-grid { 
-    grid-template-columns: 1fr 3fr; 
+    grid-template-columns: auto auto; 
     margin-left: 10%;
     margin-right: 10%;
   }
@@ -56,4 +56,16 @@
   background-color: #3d444a;
   border-radius: 25px;
 
+}
+
+.singleGridSettings3{
+  background-color: #3d444a;
+  border-radius: 25px;
+  grid-column: 1 / span 2;
+}
+
+.singleGridSettings4{
+  background-color: #3d444a;
+  border-radius: 25px;
+  grid-column: 1 / span 2;
 }
