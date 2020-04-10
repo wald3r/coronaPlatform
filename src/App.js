@@ -11,7 +11,7 @@ import activeCountryDataFile from './data/active_information_countries.csv'
 import deathsCountryDataFile from './data/deaths_information_countries.csv'
 import recoveredCountryDataFile from './data/recovered_information_countries.csv'
 import confirmedCountryDataFile from './data/confirmed_information_countries.csv'
-import { globalColor } from './config'
+import { globalColor, confirmedColorRange, activeColorRange, deathColorRange, recoveredColorRange } from './config'
 import Numbers from './components/Numbers'
 import Footer from './components/Footer'
 import './main.css'
@@ -23,7 +23,8 @@ const App =() => {
   const [globalCountryDeaths, setGlobalCountryDeaths] = useState(null)
   const [globalCountryRecovered, setGlobalCountryRecovered] = useState(null)
   const [globalCountryActive, setGlobalCountryActive] = useState(null)
-  const [countryChar, setCountryChar] = useState('confirmed')
+  const [countriesFlag, setCountriesFlag] = useState('confirmed')
+  const [choroplethFlag, setChoroplethFlag] = useState('confirmed')
 
   useEffect(() => {
     csv(globalDataFile, (err, data) => {
@@ -57,7 +58,16 @@ const App =() => {
                 <GlobalBar  globalData={globalData}/>
               </div>
               <div className='singleGridSettings2'>
-                <Choropleth data={globalCountryConfirmed}/>
+                <Button size='sm' variant={choroplethFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('confirmed')}>Confirmed</Button>
+                <Button size='sm' variant={choroplethFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('active')}>Active</Button>
+                <Button size='sm' variant={choroplethFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('recovered')}>Recovered</Button>
+                <Button size='sm' variant={choroplethFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('death')}>Death</Button><br />
+                <br/>
+                {choroplethFlag === 'confirmed' ? <Choropleth data={globalCountryConfirmed} info={'Confirmed'} colorRange={confirmedColorRange}/> : ''}
+                {choroplethFlag === 'active' ? <Choropleth data={globalCountryActive} info={'Active'} colorRange={activeColorRange}/> : ''}
+                {choroplethFlag === 'death' ? <Choropleth data={globalCountryDeaths} info={'Death'} colorRange={deathColorRange}/> : ''}
+                {choroplethFlag === 'recovered' ? <Choropleth data={globalCountryRecovered} info={'Recovered'} colorRange={recoveredColorRange}/> : ''}
+
               </div>
               <div className='singleGridSettings1'>
                 <GlobalPie globalData={globalData}/>
@@ -68,15 +78,15 @@ const App =() => {
                 <tbody>
                   <tr>
                     <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
-                      <Button size='sm' variant={countryChar === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('confirmed')}>Confirmed</Button>
-                      <Button size='sm' variant={countryChar === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('active')}>Active</Button>
-                      <Button size='sm' variant={countryChar === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('recovered')}>Recovered</Button>
-                      <Button size='sm' variant={countryChar === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountryChar('death')}>Death</Button><br />
+                      <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                      <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                      <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
+                      <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Death</Button><br />
                   
-                      {countryChar === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={globalColor.confirmed}/> : ''}
-                      {countryChar === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={globalColor.active}/> : ''}
-                      {countryChar === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={globalColor.recovered}/> : ''}
-                      {countryChar === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={globalColor.death}/> : ''}
+                      {countriesFlag === 'confirmed' ? <Countries data={globalCountryConfirmed} info={'Confirmed'} color={globalColor.confirmed}/> : ''}
+                      {countriesFlag === 'active' ? <Countries data={globalCountryActive} info={'Active'} color={globalColor.active}/> : ''}
+                      {countriesFlag === 'recovered' ? <Countries data={globalCountryRecovered} info={'Recovered'} color={globalColor.recovered}/> : ''}
+                      {countriesFlag === 'death' ? <Countries data={globalCountryDeaths} info={'Death'} color={globalColor.death}/> : ''}
                     </td>
                   </tr>
                 </tbody>

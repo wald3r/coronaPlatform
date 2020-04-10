@@ -11,7 +11,7 @@ import { scaleQuantile } from "d3-scale"
 import { Spinner } from 'react-bootstrap'
 import jsonFile from '../data/world-110m.json'
 
-const Choropleth = ( { data } ) => {
+const Choropleth = ( { data, colorRange, info } ) => {
 
   const [content, setContent] = useState('')
   const [filter, setFilter] = useState(null)
@@ -38,16 +38,7 @@ const Choropleth = ( { data } ) => {
   if(data !== null && data !== undefined){
     colorScale = scaleQuantile()
       .domain([1, 100, 1000, 10000, 50000, 100000, 200000, 5000000])
-      .range([
-        "#AED6F1",
-        "#85C1E9",
-        "#5DADE2",
-        "#3498DB",
-        "#2E86C1",
-        "#2874A6",
-        "#21618C",
-        "#1B4F72",
-      ]);
+      .range(colorRange);
   }
   
   const handleClick = (country) => {
@@ -80,14 +71,14 @@ const Choropleth = ( { data } ) => {
   }
 
   const highlightLegend = (color) => {
-    if(color === '#AED6F1') setColor1(true)
-    else if(color === '#85C1E9') setColor2(true)
-    else if(color === '#5DADE2') setColor3(true)
-    else if(color === '#3498DB') setColor4(true)
-    else if(color === '#2E86C1') setColor5(true)
-    else if(color === '#2874A6') setColor6(true)
-    else if(color === '#21618C') setColor7(true)
-    else if(color === '#1B4F72') setColor8(true)
+    if(color === colorRange[0]) setColor1(true)
+    else if(color === colorRange[1]) setColor2(true)
+    else if(color === colorRange[2]) setColor3(true)
+    else if(color === colorRange[3]) setColor4(true)
+    else if(color === colorRange[4]) setColor5(true)
+    else if(color === colorRange[5]) setColor6(true)
+    else if(color === colorRange[6]) setColor7(true)
+    else if(color === colorRange[7]) setColor8(true)
   }
 
   if(data !== null && data !== undefined){
@@ -103,15 +94,15 @@ const Choropleth = ( { data } ) => {
             recoveredData={recoveredData}
             domain={domain} />
 
-        Density of Confirmed Cases from 1 to 500000 <br/>
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#AED6F1', outline: color1 ? 'inset' : 'none' }} />
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#85C1E9', outline: color2 ? 'solid' : 'none' }} />
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#5DADE2', outline: color3 ? 'solid' : 'none' }} />
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#3498DB', outline: color4 ? 'solid' : 'none' }}/>
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#2E86C1', outline: color5 ? 'solid' : 'none' }}/>
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#2874A6', outline: color6 ? 'solid' : 'none' }}/>
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#21618C', outline: color7 ? 'solid' : 'none' }}/>
-        <span style={{display: 'inline-block', width: '40px', height: '20px', background: '#1B4F72', outline: color8 ? 'solid' : 'none' }}/><br/>
+        Density of {info} Cases from 1 to 500000 <br/>
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[0], outline: color1 ? 'inset' : 'none' }} />
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[1], outline: color2 ? 'solid' : 'none' }} />
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[2], outline: color3 ? 'solid' : 'none' }} />
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[3], outline: color4 ? 'solid' : 'none' }}/>
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[4], outline: color5 ? 'solid' : 'none' }}/>
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[5], outline: color6 ? 'solid' : 'none' }}/>
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[6], outline: color7 ? 'solid' : 'none' }}/>
+        <span style={{display: 'inline-block', width: '40px', height: '20px', background: colorRange[7], outline: color8 ? 'solid' : 'none' }}/><br/>
         <ComposableMap data-tip="" > 
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
@@ -130,7 +121,7 @@ const Choropleth = ( { data } ) => {
                         const file = data.filter((d, index )=> (d.x === geo.properties.NAME || d.x === geo.properties.NAME_LONG || d.x === geo.properties.ISO_A2))[0]
                         if(file !== undefined){
                           const perc = ((Number(file.y) * 100) / pop).toFixed(5)
-                          setContent(`${file.x} <br/>- Population: ${pop}  <br /> - Confirmed: ${file.y} (${perc}%)`)
+                          setContent(`${file.x} <br/>- Population: ${pop}  <br /> - ${info}: ${file.y} (${perc}%)`)
                         }
                         else{
                           setContent(`${geo.properties.NAME} - No Data`)
