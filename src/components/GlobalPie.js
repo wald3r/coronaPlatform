@@ -34,23 +34,27 @@ const GlobalPie = ({ globalData }) => {
     ]
 
     return (
-      <div style={container}>
-        <div>
-          <Badge variant="danger">Active</Badge>
-          <Badge variant="warning">Deaths</Badge>
-          <Badge variant="success">Recovered</Badge>
-          <RadialChart
-            showLabels={true}
-            radius={200}
-            labelsRadiusMultiplier={1.2}
-            colorType="literal"
-            data={data}
-            width={550}
-            height={500}
-            labelsStyle={{fill: '#FFFFFF'}}
-          />
+      <div>
+      Worldwide distribution <br/>
+        <div style={container}>
+          <div>
+            <Badge variant="danger">Active</Badge>
+            <Badge variant="warning">Deaths</Badge>
+            <Badge variant="success">Recovered</Badge>
+            <RadialChart
+              showLabels={true}
+              radius={200}
+              labelsRadiusMultiplier={1.2}
+              colorType="literal"
+              data={data}
+              width={550}
+              height={500}
+              labelsStyle={{fill: '#FFFFFF'}}
+            />
+          </div>
         </div>
       </div>
+
     )
   }
 }

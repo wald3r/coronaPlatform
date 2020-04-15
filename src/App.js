@@ -85,7 +85,7 @@ const App =() => {
                 {choroplethFlag === 'recovered' ? <List info={'Recovered'} data={globalCountryRecovered}/> : ''}
 
               </div>
-              <div className='singleGridSettings4'>
+              <div className='singleGridSettings5'>
                 <br/>
                 <Button size='sm' variant={choroplethFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('confirmed')}>Confirmed</Button>
                 <Button size='sm' variant={choroplethFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('active')}>Active</Button>

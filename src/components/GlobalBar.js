@@ -23,7 +23,7 @@ const GlobalBar = ({ globalData }) => {
     ]
     return (
       <div>
-        
+          Worldwide distribution <br/>
           <XYPlot
             
             margin={50}

@@ -50,6 +50,10 @@
     background-color: #3d444a;
     border-radius: 25px;
   }
+
+  .singleGridSettings5{
+    display: none;
+  }
 }
 
 @media (min-width: 1001px) {
@@ -88,6 +92,12 @@
   }
   
   .singleGridSettings4{
+    background-color: #3d444a;
+    border-radius: 25px;
+    grid-column: 2 / span 2;
+  }
+
+  .singleGridSettings5{
     background-color: #3d444a;
     border-radius: 25px;
     grid-column: 2 / span 2;
