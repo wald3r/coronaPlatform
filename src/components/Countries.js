@@ -88,7 +88,7 @@ const Countries = ({ data, info, color }) => {
                 margin={{left: 90, bottom: 100, top: 90, right: 90}}
                 yDomain={[0, Number(filteredData2[0].y)]}
                 xType='ordinal'
-                width={60*filteredData2.length}
+                width={70*filteredData2.length}
                 height={500}>
                 <VerticalBarSeries
                   data={filteredData2}
@@ -101,7 +101,7 @@ const Countries = ({ data, info, color }) => {
                   data={filteredData2.map(d => {
                     return {yOffset: Number(d.yOffset), y: Number(d.y), ...d}}
                     )} 
-                  getLabel={d => Number(d.y)}
+                  getLabel={d => d.y+'%'}
                   labelAnchorX='middle'
                   labelAnchorY='top'
                   style={{fill: '#FFFFFF'}}
