@@ -46,26 +46,7 @@ const App =() => {
     })
   }, [])
 
-    
-    const handleConfirmedData = () => {
-      if(globalCountryConfirmed !== undefined && globalCountryConfirmed !== null){
 
-        let test = globalCountryConfirmed.map(data => {
-          const country = jsonFile.objects.ne_110m_admin_0_countries.geometries.filter(geo => (geo.properties.NAME === data.x || data.x === geo.properties.NAME_LONG || data.x === geo.properties.ISO_A2))[0]
-          if(country !== undefined){
-            const perc = ((Number(data.y) * 100) / country.properties.POP_EST).toFixed(4)
-            return {x: data.x, y: Number(perc), yOffset: data.yOffset}
-          }else{
-            return {x: data.x, y: 0, yOffset: data.yOffset}
-          }
-        })
-        test = test.sort((a, b) => {
-          return Number(b.y) - Number(a.y)
-        })
-        return test
-      }
-      return null
-    }
 
     const handleData = (dataset) => {
       if(dataset !== undefined && dataset !== null){
@@ -132,7 +113,7 @@ const App =() => {
                   <tbody>
                     <tr>
                       <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
-                        Cases in comparison with the population of each country <br/>
+                        Cases in comparison with the population of each country <br/><br/>
                         <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
                         <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
                         <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>

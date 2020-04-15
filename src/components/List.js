@@ -11,7 +11,7 @@ const List = ({ data, info }) => {
     )
   }else{
     return (
-      <div style={{overflow: 'auto', maxHeight: '800px'}}>
+      <div style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '800px'}}>
         <Table style={{width: '250px'}} striped variant='dark' bordered hover size='sm'>
           <thead>
             <tr>
