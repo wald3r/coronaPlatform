@@ -37,7 +37,7 @@ const Choropleth = ( { data, colorRange, info } ) => {
   var colorScale = null
   if(data !== null && data !== undefined){
     colorScale = scaleQuantile()
-      .domain([1, 100, 1000, 10000, 50000, 100000, 200000, 5000000])
+      .domain([1, 100, 1000, 10000, 50000, 100000, 200000, 500000])
       .range(colorRange);
   }
   
