@@ -27,6 +27,9 @@ const App =() => {
   const [globalCountryActive, setGlobalCountryActive] = useState(null)
   const [countriesFlag, setCountriesFlag] = useState('confirmed')
   const [choroplethFlag, setChoroplethFlag] = useState('confirmed')
+  const [numbers, setNumbers] = useState(false)
+  const [countryFilter1, setCountryFilter1] = useState('')
+  const [countryFilter2, setCountryFilter2] = useState('')
 
   useEffect(() => {
     csv(globalDataFile, (err, data) => {
@@ -66,6 +69,17 @@ const App =() => {
         return test
       }
       return null
+    }
+
+
+    const handleCountryFilter1 = (event) => {
+      event.preventDefault()
+      setCountryFilter1(event.target.value)
+    }
+
+    const handleCountryFilter2 = (event) => {
+      event.preventDefault()
+      setCountryFilter2(event.target.value)
     }
 
   
@@ -109,24 +123,52 @@ const App =() => {
               </div>
               
               <div className='singleGridSettings2'>
-                <Table responsive  className='table' >
-                  <tbody>
-                    <tr>
-                      <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
-                        Cases in comparison with the population of each country <br/><br/>
-                        <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
-                        <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
-                        <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
-                        <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button><br />
-                        {countriesFlag === 'confirmed' ? <Countries data={handleData(globalCountryConfirmed)} color={globalColor.confirmed}/> : '' }
-                        {countriesFlag === 'active' ? <Countries data={handleData(globalCountryActive)} color={globalColor.active}/> : '' }
-                        {countriesFlag === 'death' ? <Countries data={handleData(globalCountryDeaths)} color={globalColor.death}/> : '' }
-                        {countriesFlag === 'recovered' ? <Countries data={handleData(globalCountryRecovered)} color={globalColor.recovered}/> : '' }
+              <div style={{textAlign: 'left'}}>
+                <Button onClick={() => setNumbers(!numbers)}>Change Visualization</Button>{' '}
+                {numbers === true ? 'Representation of cases in total numbers of each country' : ' Representation of cases in % in comparison with the population of each country'}  
+              </div>
+              {numbers === true ?
+                <Table responsive className='table' >
+                    <tbody>
+                      <tr>
+                        <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
+                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                          <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                          <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
+                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button><br />
+                          <br/>
+                          Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
+                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
+                          {countriesFlag === 'confirmed' ? <Countries data={globalCountryConfirmed} color={globalColor.confirmed}  countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'active' ? <Countries data={globalCountryActive} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'death' ? <Countries data={globalCountryDeaths} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'recovered' ? <Countries data={globalCountryRecovered} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                  :
+                  <Table responsive  className='table' >
+                    <tbody>
+                      <tr>
+                        <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
+                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                          <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                          <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
+                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button><br />
+                          <br/>
+                          Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
+                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
+                          {countriesFlag === 'confirmed' ? <Countries data={handleData(globalCountryConfirmed)} color={globalColor.confirmed} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'active' ? <Countries data={handleData(globalCountryActive)} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'death' ? <Countries data={handleData(globalCountryDeaths)} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'recovered' ? <Countries data={handleData(globalCountryRecovered)} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
 
-                       </td>
-                    </tr>
-                  </tbody>
-                </Table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                }
               </div>
             </div>
           <br></br>

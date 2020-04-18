@@ -8,7 +8,7 @@ import recoveredDataFile from '../data/country_information_recovered.csv'
 import {csv} from 'd3-request'
 import { Spinner } from 'react-bootstrap'
 
-const Countries = ({ data, info, color }) => {
+const Countries = ({ data, color, countryFilter1, countryFilter2, setCountryFilter1, setCountryFilter2 }) => {
 
   const [graph, setGraph] = useState(false)
   const [filter, setFilter] = useState('')
@@ -19,22 +19,9 @@ const Countries = ({ data, info, color }) => {
   const [recoveredData, setRecoveredData] = useState(null)
   const [domain, setDomain] = useState(null)
 
-  const [countryFilter1, setCountryFilter1] = useState('')
-  const [countryFilter2, setCountryFilter2] = useState('')
 
   const filteredData1 = countryFilter1 === '' ? data : data.filter(d => d.x.includes(countryFilter1))
   const filteredData2 = countryFilter2 === '' ? filteredData1 : filteredData1.concat(data.filter(d => d.x.includes(countryFilter2)))
-
-
-  const handleCountryFilter1 = (event) => {
-    event.preventDefault()
-    setCountryFilter1(event.target.value)
-  }
-
-  const handleCountryFilter2 = (event) => {
-    event.preventDefault()
-    setCountryFilter2(event.target.value)
-  }
 
   const handleShowGraph = (datapoint, event) => {
     setFilter(datapoint.x)
@@ -80,9 +67,6 @@ const Countries = ({ data, info, color }) => {
           domain={domain}
         />
           <div>  
-            <br/>
-            Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
-            {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
             {filteredData2.length === 0 ? 'No data available!' : 
               <XYPlot   
                 margin={{left: 90, bottom: 100, top: 90, right: 90}}
@@ -101,7 +85,7 @@ const Countries = ({ data, info, color }) => {
                   data={filteredData2.map(d => {
                     return {yOffset: Number(d.yOffset), y: Number(d.y), ...d}}
                     )} 
-                  getLabel={d => d.y+'%'}
+                  getLabel={d => d.y}
                   labelAnchorX='middle'
                   labelAnchorY='top'
                   style={{fill: '#FFFFFF'}}
