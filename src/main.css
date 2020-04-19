@@ -1,3 +1,4 @@
+@import './tablet.css';
 
 .global{  
   background-color: #202427;
@@ -13,7 +14,7 @@
   margin-right: 5%;
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1081px) {
   .main-grid { 
     grid-template-columns: auto; 
     margin-left: 10%;
@@ -53,7 +54,7 @@
 
 }
 
-@media (min-width: 1026px) {
+@media (min-width: 1082px) {
   .main-grid { 
     grid-template-columns: auto auto auto; 
     margin-left: 10%;
@@ -86,7 +87,7 @@
     justify-content: center;
     padding: 25px;
     grid-column: 1 / span 2;
-    
+
   }
   
   .singleGridSettings4{
