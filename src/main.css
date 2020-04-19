@@ -52,6 +52,11 @@
     border-radius: 25px;
   }
 
+  .singleGridSettings5{
+    background-color: #3d444a;
+    border-radius: 25px;
+  
+  }
 
 }
 
@@ -100,10 +105,14 @@
   .singleGridSettings5{
     background-color: #3d444a;
     border-radius: 25px;
+    display: block;
+    align-items: center;
+    justify-content: center;
   }
 
   .listcases{
-    max-width: 80%;
+    max-width: 300px;
+    table-layout: fixed;
   }
 }
 
