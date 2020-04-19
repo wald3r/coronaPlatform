@@ -22,7 +22,7 @@ const GlobalBar = ({ globalData }) => {
       {x: "Recovered", y: Number(globalData[0].Recovered), yOffset: -5, color: globalColor.recovered}
     ]
     return (
-      <div>
+      <div style={{flex: 1}}>
           Worldwide distribution <br/>
           <XYPlot
             

@@ -1,185 +1,186 @@
 x,y,yOffset
-US,361738,-6
-Italy,94067,-6
-Spain,84689,-6
-France,80199,-6
-Germany,69566,-6
-United Kingdom,49453,-6
-Turkey,31802,-6
-Iran,31678,-6
-Netherlands,17329,-6
-Belgium,16002,-6
-Canada,13706,-6
-Brazil,13221,-6
-Switzerland,12728,-6
-Portugal,11913,-6
-Israel,8413,-6
-Austria,8350,-6
-Russia,6945,-6
-Sweden,6897,-6
-Norway,5965,-6
-Ireland,5474,-6
-Australia,4770,-6
-Czechia,4757,-6
-India,4740,-6
-Poland,4528,-6
-Chile,4175,-6
-Romania,3760,-6
-Pakistan,3549,-6
-Philippines,3503,-6
-Ecuador,3456,-6
-"Korea, South",3445,-6
-Denmark,3442,-6
-Japan,3222,-6
-Malaysia,2579,-6
-Luxembourg,2426,-6
-Serbia,2386,-6
-Indonesia,2313,-6
-United Arab Emirates,2161,-6
-Saudi Arabia,2139,-6
-Panama,2031,-6
-Finland,1974,-6
-China,1973,-6
-Qatar,1901,-6
-Dominican Republic,1822,-6
-Mexico,1681,-6
-South Africa,1641,-6
-Colombia,1630,-6
-Peru,1546,-6
-Greece,1482,-6
-Ukraine,1389,-6
-Thailand,1343,-6
-Argentina,1234,-6
-Algeria,1162,-6
-Singapore,1098,-6
-Croatia,1097,-6
-Egypt,1080,-6
-Estonia,1059,-6
-Iceland,1021,-6
-Morocco,1001,-6
-Moldova,994,-6
-Slovenia,921,-6
-New Zealand,918,-6
-Lithuania,857,-6
-Belarus,794,-6
-Armenia,758,-6
-Hungary,699,-6
-Iraq,684,-6
-Azerbaijan,665,-6
-Bosnia and Herzegovina,663,-6
-Kazakhstan,640,-6
-Kuwait,637,-6
-Cameroon,606,-6
-Tunisia,575,-6
-Slovakia,566,-6
-North Macedonia,543,-6
-Latvia,530,-6
-Bulgaria,512,-6
-Uzbekistan,488,-6
-Andorra,484,-6
-Lebanon,467,-6
-Costa Rica,457,-6
-Cyprus,438,-6
-Afghanistan,391,-6
-Cuba,358,-6
-Bahrain,348,-6
-Taiwan*,314,-6
-Cote d'Ivoire,305,-6
-Oman,302,-6
-Malta,288,-6
-Honduras,277,-6
-Uruguay,267,-6
-Mauritius,253,-6
-Ghana,251,-6
-Niger,241,-6
-Burkina Faso,238,-6
-Montenegro,235,-6
-Albania,230,-6
-West Bank and Gaza,218,-6
-Jordan,209,-6
-San Marino,205,-6
-Nigeria,204,-6
-Kyrgyzstan,191,-6
-Bolivia,178,-6
-Kenya,159,-6
-Congo (Kinshasa),153,-6
-Georgia,147,-6
-Kosovo,142,-6
-Guinea,139,-6
-Sri Lanka,137,-6
-Senegal,130,-6
-Vietnam,126,-6
-Bangladesh,114,-6
-Trinidad and Tobago,98,-6
-Rwanda,98,-6
-Paraguay,95,-6
-Venezuela,93,-6
-Diamond Princess,82,-6
-Madagascar,81,-6
-Djibouti,81,-6
-Monaco,74,-6
-El Salvador,69,-6
-Cambodia,57,-6
-Guatemala,57,-6
-Barbados,54,-6
-Uganda,52,-6
-Jamaica,52,-6
-Brunei,49,-6
-Ethiopia,46,-6
-Mali,39,-6
-Togo,39,-6
-Congo (Brazzaville),38,-6
-Guinea-Bissau,33,-6
-Eritrea,31,-6
-Zambia,31,-6
-Gabon,28,-6
-Haiti,24,-6
-Liechtenstein,22,-6
-Bahamas,22,-6
-Burma,21,-6
-Benin,20,-6
-Guyana,20,-6
-Libya,18,-6
-Antigua and Barbuda,18,-6
-Tanzania,18,-6
-Fiji,15,-6
-Dominica,14,-6
-Laos,14,-6
-Syria,14,-6
-Saint Lucia,13,-6
-Namibia,13,-6
-Angola,13,-6
-Equatorial Guinea,13,-6
-Grenada,12,-6
-Mongolia,11,-6
-Seychelles,11,-6
-Saint Kitts and Nevis,11,-6
-Sudan,10,-6
-Suriname,9,-6
-Zimbabwe,9,-6
-Mozambique,9,-6
-Nepal,8,-6
-Chad,8,-6
-Liberia,8,-6
+US,628693,-6
+Italy,107771,-6
+United Kingdom,99402,-6
+Spain,96886,-6
+France,93217,-6
+Turkey,69986,-6
+Germany,53483,-6
+Russia,33423,-6
+Netherlands,27836,-6
+Belgium,23382,-6
+Canada,21992,-6
+Brazil,20278,-6
+Iran,19850,-6
+Portugal,18388,-6
+Ireland,14110,-6
+India,12738,-6
+Sweden,11761,-6
+Israel,9645,-6
+Japan,9005,-6
+Switzerland,8936,-6
+Ecuador,7558,-6
+Poland,7414,-6
+Peru,7388,-6
+Saudi Arabia,6853,-6
+Norway,6840,-6
+Romania,6267,-6
+Pakistan,5663,-6
+Chile,5569,-6
+Singapore,5241,-6
+Serbia,5240,-6
+Czechia,5198,-6
+Philippines,5174,-6
+Indonesia,5082,-6
+United Arab Emirates,5077,-6
+Ukraine,4698,-6
+Qatar,4490,-6
+Belarus,4392,-6
+Mexico,4204,-6
+Austria,4014,-6
+Panama,3972,-6
+Dominican Republic,3806,-6
+Denmark,3060,-6
+Luxembourg,2864,-6
+Colombia,2652,-6
+"Korea, South",2484,-6
+Australia,2356,-6
+Morocco,2234,-6
+Malaysia,2115,-6
+Egypt,2107,-6
+South Africa,2079,-6
+Bangladesh,1994,-6
+Argentina,1944,-6
+Moldova,1930,-6
+Finland,1891,-6
+Greece,1856,-6
+China,1537,-6
+Kuwait,1465,-6
+Hungary,1431,-6
+Estonia,1312,-6
+Uzbekistan,1291,-6
+Algeria,1273,-6
+Kazakhstan,1221,-6
+Croatia,1178,-6
+Slovenia,1057,-6
+Bahrain,1011,-6
+Oman,998,-6
+Lithuania,978,-6
+North Macedonia,957,-6
+Thailand,899,-6
+Bosnia and Herzegovina,883,-6
+Slovakia,865,-6
+Cameroon,818,-6
+Afghanistan,791,-6
+Tunisia,784,-6
+Azerbaijan,765,-6
+Cuba,727,-6
+Ghana,726,-6
+Armenia,705,-6
+Bulgaria,684,-6
+Cyprus,670,-6
+Djibouti,654,-6
+Latvia,619,-6
+Cote d'Ivoire,554,-6
+Costa Rica,554,-6
+Lebanon,552,-6
+New Zealand,544,-6
+Niger,507,-6
+Iraq,478,-6
+Andorra,464,-6
+Iceland,460,-6
+Guinea,450,-6
+Bolivia,431,-6
+Kosovo,405,-6
+Honduras,401,-6
+Kyrgyzstan,371,-6
+Nigeria,357,-6
+San Marino,356,-6
+West Bank and Gaza,347,-6
+Malta,324,-6
+Georgia,298,-6
+Congo (Kinshasa),256,-6
+Montenegro,247,-6
+Albania,220,-6
+Taiwan*,214,-6
+Burkina Faso,208,-6
+Guatemala,207,-6
+Uruguay,205,-6
+Kenya,190,-6
+Mali,162,-6
+Sri Lanka,161,-6
+Paraguay,159,-6
+El Salvador,140,-6
+Jordan,137,-6
+Mauritius,136,-6
+Senegal,136,-6
+Jamaica,133,-6
+Tanzania,131,-6
+Somalia,126,-6
+Congo (Brazzaville),126,-6
+Venezuela,105,-6
+Gabon,100,-6
+Burma,88,-6
+Ethiopia,86,-6
+Trinidad and Tobago,85,-6
+Madagascar,85,-6
+Equatorial Guinea,75,-6
+Rwanda,75,-6
+Monaco,69,-6
+Vietnam,67,-6
+Liberia,62,-6
+Cabo Verde,56,-6
+Diamond Princess,55,-6
+Barbados,53,-6
+Sudan,50,-6
+Guyana,48,-6
+Guinea-Bissau,46,-6
+Haiti,41,-6
+Libya,37,-6
+Bahamas,36,-6
+Eritrea,36,-6
+Uganda,33,-6
+Mozambique,31,-6
+Syria,31,-6
+Togo,30,-6
+Sierra Leone,30,-6
+Nepal,29,-6
+Mongolia,26,-6
+Chad,25,-6
+Liechtenstein,23,-6
+Brunei,23,-6
+Zambia,22,-6
+Zimbabwe,20,-6
+Maldives,19,-6
+Cambodia,19,-6
+Timor-Leste,17,-6
+Fiji,17,-6
+Laos,17,-6
+Antigua and Barbuda,17,-6
+Belize,16,-6
+Benin,16,-6
+Angola,16,-6
+Botswana,14,-6
+Saint Kitts and Nevis,14,-6
+Eswatini,13,-6
+Malawi,12,-6
+Saint Vincent and the Grenadines,11,-6
+Namibia,10,-6
+Dominica,8,-6
 Central African Republic,8,-6
+Grenada,8,-6
+Papua New Guinea,7,-6
 MS Zaandam,7,-6
-Holy See,7,-6
-Somalia,7,-6
-Malawi,7,-6
-Saint Vincent and the Grenadines,7,-6
-Sierra Leone,6,-6
-Maldives,6,-6
-Eswatini,6,-6
-Belize,6,-6
-Nicaragua,5,-6
-Botswana,5,-6
-Cabo Verde,5,-6
+Seychelles,6,-6
+Holy See,6,-6
+Gambia,6,-6
+Western Sahara,6,-6
+Mauritania,4,-6
+Saint Lucia,4,-6
+Burundi,4,-6
 Sao Tome and Principe,4,-6
-Western Sahara,4,-6
-Burundi,3,-6
+South Sudan,4,-6
 Bhutan,3,-6
-Mauritania,3,-6
-South Sudan,2,-6
-Papua New Guinea,2,-6
-Gambia,1,-6
-Timor-Leste,1,-6
+Suriname,3,-6
+Nicaragua,1,-6
+Yemen,1,-6

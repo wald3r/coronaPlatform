@@ -51,9 +51,6 @@
     border-radius: 25px;
   }
 
-  .singleGridSettings5{
-    display: none;
-  }
 }
 
 @media (min-width: 1026px) {
@@ -89,6 +86,7 @@
     justify-content: center;
     padding: 25px;
     grid-column: 1 / span 2;
+    
   }
   
   .singleGridSettings4{
@@ -97,20 +95,13 @@
     grid-column: 2 / span 2;
   }
 
-  .singleGridSettings5{
-    background-color: #3d444a;
-    border-radius: 25px;
-    grid-column: 2 / span 2;
-  }
+
 }
-
-
 
 
 .grid-general{
   display: grid;
   grid-gap: 10px;
   padding: 10px;
-
 }
 

@@ -21,7 +21,10 @@ const Countries = ({ data, color, countryFilter1, countryFilter2, setCountryFilt
 
 
   const filteredData1 = countryFilter1 === '' ? data : data.filter(d => d.x.includes(countryFilter1))
-  const filteredData2 = countryFilter2 === '' ? filteredData1 : filteredData1.concat(data.filter(d => d.x.includes(countryFilter2)))
+  const filteredData2 = countryFilter2 === '' ? filteredData1 : filteredData1.concat(data.filter(d => d.x.includes(countryFilter2))).sort((a, b) => {
+    return b.y - a.y
+  })
+
 
   const handleShowGraph = (datapoint, event) => {
     setFilter(datapoint.x)
@@ -72,7 +75,7 @@ const Countries = ({ data, color, countryFilter1, countryFilter2, setCountryFilt
                 margin={{left: 90, bottom: 100, top: 90, right: 90}}
                 yDomain={[0, Number(filteredData2[0].y)]}
                 xType='ordinal'
-                width={70*filteredData2.length}
+                width={60*filteredData2.length}
                 height={500}>
                 <VerticalBarSeries
                   data={filteredData2}

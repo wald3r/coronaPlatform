@@ -99,7 +99,7 @@ const App =() => {
                 {choroplethFlag === 'recovered' ? <List info={'Recovered'} data={globalCountryRecovered}/> : ''}
 
               </div>
-              <div className='singleGridSettings5'>
+              <div className='singleGridSettings4'>
                 <br/>
                 <Button size='sm' variant={choroplethFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('confirmed')}>Confirmed</Button>
                 <Button size='sm' variant={choroplethFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('active')}>Active</Button>
@@ -133,11 +133,14 @@ const App =() => {
                           <Button onClick={() => setNumbers(!numbers)}>Change Visualization</Button>{' '}
                         </div>
                           Representation of cases in total numbers of each country <br/><br/>
+
                           <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
                           <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
                           <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
                           <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
+   
                           {' '}Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
+                   
                           {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
                           {countriesFlag === 'confirmed' ? <Countries data={globalCountryConfirmed} color={globalColor.confirmed}  countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
                           {countriesFlag === 'active' ? <Countries data={globalCountryActive} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
