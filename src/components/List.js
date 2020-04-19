@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Spinner } from 'react-bootstrap'
+import '../main.css'
 
 const List = ({ data, info }) => {
 
@@ -12,7 +13,7 @@ const List = ({ data, info }) => {
   }else{
     return (
       <div style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '800px'}}>
-        <Table style={{width: '250px'}} striped variant='dark' bordered hover size='sm'>
+        <Table className='listcases' striped variant='dark' bordered hover size='sm'>
           <thead>
             <tr>
               <th style={{ width: '100px'}}>Country</th>

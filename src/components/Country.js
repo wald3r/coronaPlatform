@@ -152,7 +152,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
             
                 <HorizontalGridLines />
                 <XAxis title={'Days'} hideTicks />
-                <YAxis />
+                <YAxis title={'Cases'}/>
               </XYPlot>
             </div>
        

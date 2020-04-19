@@ -27,6 +27,7 @@ const App =() => {
   const [globalCountryActive, setGlobalCountryActive] = useState(null)
   const [countriesFlag, setCountriesFlag] = useState('confirmed')
   const [choroplethFlag, setChoroplethFlag] = useState('confirmed')
+  const [listFlag, setListFlag] = useState('confirmed')
   const [numbers, setNumbers] = useState(true)
   const [countryFilter1, setCountryFilter1] = useState('')
   const [countryFilter2, setCountryFilter2] = useState('')
@@ -92,11 +93,20 @@ const App =() => {
               <div className='singleGridSettings4'>
                 <Numbers data={globalData}/>
               </div>
-              <div className='singleGridSettings1'>
-                {choroplethFlag === 'confirmed' ? <List info={'Confirmed'} data={globalCountryConfirmed}/> : ''}
-                {choroplethFlag === 'active' ? <List info={'Active'} data={globalCountryActive}/> : ''}
-                {choroplethFlag === 'death' ? <List info={'Death'} data={globalCountryDeaths}/> : ''}
-                {choroplethFlag === 'recovered' ? <List info={'Recovered'} data={globalCountryRecovered}/> : ''}
+              <div className='singleGridSettings5'>
+                <div>
+                  <Button size='sm' variant={listFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('confirmed')}>Confirmed</Button>
+                  <Button size='sm' variant={listFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('active')}>Active</Button>
+                  <Button size='sm' variant={listFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('death')}>Deaths</Button>
+                  <Button size='sm' variant={listFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('recovered')}>Recovered</Button>
+                </div>
+                <br />
+                <div>                
+                  {listFlag === 'confirmed' ? <List info={'Confirmed'} data={globalCountryConfirmed}/> : ''}
+                  {listFlag === 'active' ? <List info={'Active'} data={globalCountryActive}/> : ''}
+                  {listFlag === 'death' ? <List info={'Death'} data={globalCountryDeaths}/> : ''}
+                  {listFlag === 'recovered' ? <List info={'Recovered'} data={globalCountryRecovered}/> : ''}
+                </div>
 
               </div>
               <div className='singleGridSettings4'>

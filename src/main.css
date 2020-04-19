@@ -1,4 +1,3 @@
-@import './tablet.css';
 
 .global{  
   background-color: #202427;
@@ -13,6 +12,7 @@
   margin-left: 5%; 
   margin-right: 5%;
 }
+
 
 @media (max-width: 1081px) {
   .main-grid { 
@@ -51,6 +51,7 @@
     background-color: #3d444a;
     border-radius: 25px;
   }
+
 
 }
 
@@ -96,9 +97,15 @@
     grid-column: 2 / span 2;
   }
 
+  .singleGridSettings5{
+    background-color: #3d444a;
+    border-radius: 25px;
+  }
 
+  .listcases{
+    max-width: 80%;
+  }
 }
-
 
 .grid-general{
   display: grid;
