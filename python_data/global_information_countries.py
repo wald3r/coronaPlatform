@@ -57,6 +57,7 @@ def main():
  var = os.getcwd()
  mod_var = var.replace('/python_data', '/')
 
+ df.to_csv(mod_var+'src/data/global_information_countries.csv', index=False)
  df1.to_csv(mod_var+'src/data/deaths_information_countries.csv', index=False)
  df2.to_csv(mod_var+'src/data/active_information_countries.csv', index=False)
  df3.to_csv(mod_var+'src/data/recovered_information_countries.csv', index=False)

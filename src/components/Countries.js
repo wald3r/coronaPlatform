@@ -1,24 +1,12 @@
 import React, { useState } from 'react'
 import {XYPlot, XAxis, YAxis, VerticalBarSeries, LabelSeries} from 'react-vis'
-import Country from './Country'
-import activeDataFile from '../data/country_information_active.csv'
-import confirmedDataFile from '../data/country_information_confirmed.csv'
-import deathsDataFile from '../data/country_information_deaths.csv'
-import recoveredDataFile from '../data/country_information_recovered.csv'
-import {csv} from 'd3-request'
+import PieModal from './PieModal'
 import { Spinner } from 'react-bootstrap'
 
-const Countries = ({ data, color, countryFilter1, countryFilter2, setCountryFilter1, setCountryFilter2 }) => {
+const Countries = ({ data, color, countryFilter1, countryFilter2, pieData }) => {
 
   const [graph, setGraph] = useState(false)
   const [filter, setFilter] = useState('')
-
-  const [activeData, setActiveData] = useState(null)
-  const [confirmedData, setConfirmedData] = useState(null)
-  const [deathsData, setDeathsData] = useState(null)
-  const [recoveredData, setRecoveredData] = useState(null)
-  const [domain, setDomain] = useState(null)
-
 
   const filteredData1 = countryFilter1 === '' ? data : data.filter(d => d.x.includes(countryFilter1))
   const filteredData2 = countryFilter2 === '' ? filteredData1 : filteredData1.concat(data.filter(d => d.x.includes(countryFilter2))).sort((a, b) => {
@@ -29,25 +17,6 @@ const Countries = ({ data, color, countryFilter1, countryFilter2, setCountryFilt
   const handleShowGraph = (datapoint, event) => {
     setFilter(datapoint.x)
     setGraph(true)
-
-    csv(activeDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === datapoint.x )   
-      setActiveData(filteredData[0])
-    }) 
-    csv(confirmedDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === datapoint.x )   
-      setConfirmedData(filteredData[0])
-      let keys = Object.keys(filteredData[0])
-      setDomain(filteredData[0][keys[keys.length-1]])
-    }) 
-    csv(deathsDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === datapoint.x )   
-      setDeathsData(filteredData[0])
-    }) 
-    csv(recoveredDataFile, (err, data) => {
-      const filteredData = data.filter(point => point.Country  === datapoint.x )   
-      setRecoveredData(filteredData[0])
-    }) 
   }
 
   if(filteredData2 === undefined || filteredData2 === null){
@@ -59,15 +28,11 @@ const Countries = ({ data, color, countryFilter1, countryFilter2, setCountryFilt
   }else{
     return (
       <div style={{overflow: 'auto'}}>
-        <Country
+        <PieModal
           handleGraph={setGraph}
           showGraph={graph}
           filter={filter}
-          activeData={activeData}
-          confirmedData={confirmedData}
-          deathsData={deathsData}
-          recoveredData={recoveredData}
-          domain={domain}
+          data={pieData}
         />
           <div>  
             {filteredData2.length === 0 ? 'No data available!' : 

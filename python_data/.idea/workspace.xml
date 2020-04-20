@@ -3,9 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3c3694ee-6078-4058-b0ac-be72764ce0db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data" beforeDir="false" afterPath="$PROJECT_DIR$/data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global_information_countries.py" beforeDir="false" afterPath="$PROJECT_DIR$/global_information_countries.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/components/Choropleth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Choropleth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/Countries.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Countries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/Country.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/active_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/active_information_countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/confirmed_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/confirmed_information_countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/deaths_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/deaths_information_countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/recovered_information_countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/recovered_information_countries.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/global_information_countries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+            <state relative-caret-position="480">
+              <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -284,14 +292,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="0" y="-2" width="1680" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22677596" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22631261" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27321815" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27302274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -372,8 +381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/global_information_countries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="480">
+          <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

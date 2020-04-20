@@ -11,6 +11,7 @@ import activeCountryDataFile from './data/active_information_countries.csv'
 import deathsCountryDataFile from './data/deaths_information_countries.csv'
 import recoveredCountryDataFile from './data/recovered_information_countries.csv'
 import confirmedCountryDataFile from './data/confirmed_information_countries.csv'
+import globalInformationCountriesFile from './data/global_information_countries.csv'
 import { globalColor, confirmedColorRange, activeColorRange, deathColorRange, recoveredColorRange } from './config'
 import Numbers from './components/Numbers'
 import Footer from './components/Footer'
@@ -21,6 +22,7 @@ import List from './components/List'
 const App =() => {
 
   const [globalData, setGlobalData] = useState(null)
+  const [globalInformationCountries, setGlobalInformationCountries] = useState(null)
   const [globalCountryConfirmed, setGlobalCountryConfirmed] = useState(null)
   const [globalCountryDeaths, setGlobalCountryDeaths] = useState(null)
   const [globalCountryRecovered, setGlobalCountryRecovered] = useState(null)
@@ -47,6 +49,9 @@ const App =() => {
     }) 
     csv(deathsCountryDataFile, (err, data) => {
       setGlobalCountryDeaths(data)
+    })
+    csv(globalInformationCountriesFile, (err, data) => {
+      setGlobalInformationCountries(data)
     })
   }, [])
 
@@ -95,10 +100,10 @@ const App =() => {
               </div>
               <div className='singleGridSettings5'>
                 <div>
-                  <Button size='sm' variant={listFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('confirmed')}>Confirmed</Button>
-                  <Button size='sm' variant={listFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('active')}>Active</Button>
-                  <Button size='sm' variant={listFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('death')}>Deaths</Button>
-                  <Button size='sm' variant={listFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setListFlag('recovered')}>Recovered</Button>
+                  <Button size='sm' variant={listFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setListFlag('confirmed')}>Confirmed</Button>
+                  <Button size='sm' variant={listFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setListFlag('active')}>Active</Button>
+                  <Button size='sm' variant={listFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setListFlag('death')}>Deaths</Button>
+                  <Button size='sm' variant={listFlag === 'recovered' ? 'success' : 'outline-secondary'} onClick={() => setListFlag('recovered')}>Recovered</Button>
                 </div>
                 <br />
                 <div>                
@@ -111,10 +116,10 @@ const App =() => {
               </div>
               <div className='singleGridSettings4'>
                 <br/>
-                <Button size='sm' variant={choroplethFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('confirmed')}>Confirmed</Button>
-                <Button size='sm' variant={choroplethFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('active')}>Active</Button>
-                <Button size='sm' variant={choroplethFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('death')}>Deaths</Button>
-                <Button size='sm' variant={choroplethFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setChoroplethFlag('recovered')}>Recovered</Button>
+                <Button size='sm' variant={choroplethFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setChoroplethFlag('confirmed')}>Confirmed</Button>
+                <Button size='sm' variant={choroplethFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setChoroplethFlag('active')}>Active</Button>
+                <Button size='sm' variant={choroplethFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setChoroplethFlag('death')}>Deaths</Button>
+                <Button size='sm' variant={choroplethFlag === 'recovered' ? 'success' : 'outline-secondary'} onClick={() => setChoroplethFlag('recovered')}>Recovered</Button>
                 <br/>
                 <br/>
                 {choroplethFlag === 'confirmed' ? <Choropleth data={globalCountryConfirmed} info={'Confirmed'} colorRange={confirmedColorRange}/> : ''}
@@ -140,22 +145,23 @@ const App =() => {
                       <tr>
                         <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
                         <div style={{textAlign: 'left'}}>
-                          <Button onClick={() => setNumbers(!numbers)}>Change Visualization</Button>{' '}
+                          <Button variant='secondary' onClick={() => setNumbers(!numbers)}>Toggle</Button>{' '}
                         </div>
                           Representation of cases in total numbers of each country <br/><br/>
 
-                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
-                          <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
-                          <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
-                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
-   
+                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                          <Button size='sm' variant={countriesFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                          <Button size='sm' variant={countriesFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
+                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'success' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
+                          <br/><br/>
+                          <div>
                           {' '}Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
-                   
-                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
-                          {countriesFlag === 'confirmed' ? <Countries data={globalCountryConfirmed} color={globalColor.confirmed}  countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'active' ? <Countries data={globalCountryActive} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'death' ? <Countries data={globalCountryDeaths} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'recovered' ? <Countries data={globalCountryRecovered} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
+                          </div><br/>
+                          {countriesFlag === 'confirmed' ? <Countries pieData={globalInformationCountries} data={globalCountryConfirmed} color={globalColor.confirmed}  countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'active' ? <Countries pieData={globalInformationCountries} data={globalCountryActive} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'death' ? <Countries pieData={globalInformationCountries} data={globalCountryDeaths} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'recovered' ? <Countries pieData={globalInformationCountries} data={globalCountryRecovered} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
                         </td>
                       </tr>
                     </tbody>
@@ -166,19 +172,22 @@ const App =() => {
                       <tr>
                         <td style={{verticalAlign: 'middle', color:'#ffffff'}}> 
                           <div style={{textAlign: 'left'}}>
-                            <Button onClick={() => setNumbers(!numbers)}>Change Visualization</Button>{' '}
+                            <Button variant = 'secondary' onClick={() => setNumbers(!numbers)}>Toggle</Button>{' '}
                           </div>
                           Representation of cases in % in comparison with the population of each country <br/><br/>
-                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
-                          <Button size='sm' variant={countriesFlag === 'active' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
-                          <Button size='sm' variant={countriesFlag === 'death' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
-                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'secondary' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
+                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                          <Button size='sm' variant={countriesFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                          <Button size='sm' variant={countriesFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
+                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'success' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
+                          <br/><br/>
+                          <div>
                           {' '}Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
-                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}<br/>
-                          {countriesFlag === 'confirmed' ? <Countries data={handleData(globalCountryConfirmed)} color={globalColor.confirmed} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'active' ? <Countries data={handleData(globalCountryActive)} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'death' ? <Countries data={handleData(globalCountryDeaths)} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'recovered' ? <Countries data={handleData(globalCountryRecovered)} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
+                          </div><br/>
+                          {countriesFlag === 'confirmed' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryConfirmed)} color={globalColor.confirmed} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'active' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryActive)} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'death' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryDeaths)} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'recovered' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryRecovered)} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
 
                         </td>
                       </tr>

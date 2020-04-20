@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import ReactTooltip from 'react-tooltip'
-import Country from './Country'
+import CountryModal from './CountryModal'
 import {csv} from 'd3-request'
 import activeDataFile from '../data/country_information_active.csv'
 import confirmedDataFile from '../data/country_information_confirmed.csv'
@@ -84,7 +84,7 @@ const Choropleth = ( { data, colorRange, info } ) => {
   if(data !== null && data !== undefined){
     return(
       <div>
-          <Country
+          <CountryModal
             handleGraph={setGraph}
             showGraph={graph}
             filter={filter}

@@ -4,7 +4,7 @@ import { globalColor } from '../config'
 import { Button, Modal } from 'react-bootstrap'
 
 
-const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
+const CountryModal = ({domain, handleGraph, showGraph, filter, confirmedData, recoveredData, deathsData, activeData}) => {
 
   const [activeDataFlag, setActiveDataFlag] = useState(false)
   const [confirmedDataFlag, setConfirmedDataFlag] = useState(true)
@@ -91,7 +91,7 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
 
       <Modal size="lg" show={showGraph} onHide={handleClose} animation={true}>
       <Modal.Header closeButton>
-        <Modal.Title>{filter} - Graph</Modal.Title>
+        <Modal.Title>{filter} - Line Graph</Modal.Title>
       </Modal.Header>
       <Modal.Body>
             <div> 
@@ -143,8 +143,8 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
                 >
                 <div style={{color: '#000000'}}>
                   <div>{date === '' ? '' : `Day:${date}`}</div>
-                  <div>{crosshair1[0] === undefined ? '' : `Active:${crosshair1[0].y}`}</div>
                   <div>{crosshair2[0] === undefined ? '' : `Confirmed:${crosshair2[0].y}`}</div>
+                  <div>{crosshair1[0] === undefined ? '' : `Active:${crosshair1[0].y}`}</div>
                   <div>{crosshair3[0] === undefined ? '' : `Deaths:${crosshair3[0].y}`}</div>
                   <div>{crosshair4[0] === undefined ? '' : `Recovered:${crosshair4[0].y}`}</div>
                 </div>
@@ -189,4 +189,4 @@ const Country = ({domain, handleGraph, showGraph, filter, confirmedData, recover
 }
 
 
-export default Country
+export default CountryModal
