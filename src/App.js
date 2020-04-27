@@ -33,6 +33,8 @@ const App =() => {
   const [numbers, setNumbers] = useState(true)
   const [countryFilter1, setCountryFilter1] = useState('')
   const [countryFilter2, setCountryFilter2] = useState('')
+  const [highlight, setHighlight] = useState(null)
+
 
   useEffect(() => {
     csv(globalDataFile, (err, data) => {
@@ -147,21 +149,23 @@ const App =() => {
                         <div style={{textAlign: 'left'}}>
                           <Button variant='secondary' onClick={() => setNumbers(!numbers)}>Toggle</Button>{' '}
                         </div>
-                          Representation of cases in total numbers of each country <br/><br/>
+                        <span style={{display: 'inline-block', textAlign:'center'}}>
+                            Representation of cases in total numbers of each country <br/><br/>
 
-                          <Button size='sm' variant={countriesFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
-                          <Button size='sm' variant={countriesFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
-                          <Button size='sm' variant={countriesFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
-                          <Button size='sm' variant={countriesFlag === 'recovered' ? 'success' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
-                          <br/><br/>
-                          <div>
-                          {' '}Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
-                          {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
-                          </div><br/>
-                          {countriesFlag === 'confirmed' ? <Countries pieData={globalInformationCountries} data={globalCountryConfirmed} color={globalColor.confirmed}  countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'active' ? <Countries pieData={globalInformationCountries} data={globalCountryActive} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'death' ? <Countries pieData={globalInformationCountries} data={globalCountryDeaths} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'recovered' ? <Countries pieData={globalInformationCountries} data={globalCountryRecovered} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                            <Button size='sm' variant={countriesFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
+                            <Button size='sm' variant={countriesFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
+                            <Button size='sm' variant={countriesFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
+                            <Button size='sm' variant={countriesFlag === 'recovered' ? 'success' : 'outline-secondary'} onClick={() => setCountriesFlag('recovered')}>Recovered</Button>
+                            <br/><br/>
+                            <div>
+                            {' '}Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
+                            {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
+                            </div><br/>
+                          </span>
+                          {countriesFlag === 'confirmed' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={globalCountryConfirmed} color={globalColor.confirmed}  countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'active' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={globalCountryActive} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'death' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={globalCountryDeaths} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'recovered' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={globalCountryRecovered} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
                         </td>
                       </tr>
                     </tbody>
@@ -175,6 +179,7 @@ const App =() => {
                             <Button variant = 'secondary' onClick={() => setNumbers(!numbers)}>Toggle</Button>{' '}
                           </div>
                           Representation of cases in % in comparison with the population of each country <br/><br/>
+
                           <Button size='sm' variant={countriesFlag === 'confirmed' ? 'primary' : 'outline-secondary'} onClick={() => setCountriesFlag('confirmed')}>Confirmed</Button>
                           <Button size='sm' variant={countriesFlag === 'active' ? 'danger' : 'outline-secondary'} onClick={() => setCountriesFlag('active')}>Active</Button>
                           <Button size='sm' variant={countriesFlag === 'death' ? 'warning' : 'outline-secondary'} onClick={() => setCountriesFlag('death')}>Deaths</Button>
@@ -184,16 +189,23 @@ const App =() => {
                           {' '}Filter: <input autoComplete='off' type='text' onChange={handleCountryFilter1}/>
                           {countryFilter1 === '' ? '' : <input autoComplete='off' type='text' onChange={handleCountryFilter2}/>}
                           </div><br/>
-                          {countriesFlag === 'confirmed' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryConfirmed)} color={globalColor.confirmed} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'active' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryActive)} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'death' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryDeaths)} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
-                          {countriesFlag === 'recovered' ? <Countries pieData={globalInformationCountries} data={handleData(globalCountryRecovered)} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'confirmed' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={handleData(globalCountryConfirmed)} color={globalColor.confirmed} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'active' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={handleData(globalCountryActive)} color={globalColor.active} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'death' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={handleData(globalCountryDeaths)} color={globalColor.death} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
+                          {countriesFlag === 'recovered' ? <Countries setHighlight={setHighlight} pieData={globalInformationCountries} data={handleData(globalCountryRecovered)} color={globalColor.recovered} countryFilter1={countryFilter1} countryFilter2={countryFilter2} setCountryFilter1={setCountryFilter1} setCountryFilter2={setCountryFilter2}/> : '' }
 
                         </td>
                       </tr>
                     </tbody>
                   </Table>
                 }
+                      <span style={{textAlign: 'center'}}>
+                          {highlight === null ? 'Hover over a bar to see detailed information.' :
+                            <div>
+                              Country: {highlight.x} &nbsp;&nbsp;&nbsp;&nbsp; Cases: {highlight.y} &nbsp;&nbsp;&nbsp;&nbsp; Click on the {highlight.x} bar to see detailed information.
+                            </div>
+                          }
+                        </span>
               </div>
             </div>
           <br></br>

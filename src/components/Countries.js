@@ -3,10 +3,11 @@ import {XYPlot, XAxis, YAxis, VerticalBarSeries, LabelSeries} from 'react-vis'
 import PieModal from './PieModal'
 import { Spinner } from 'react-bootstrap'
 
-const Countries = ({ data, color, countryFilter1, countryFilter2, pieData }) => {
+const Countries = ({ data, color, countryFilter1, countryFilter2, pieData, setHighlight }) => {
 
   const [graph, setGraph] = useState(false)
   const [filter, setFilter] = useState('')
+
 
   const filteredData1 = countryFilter1 === '' ? data : data.filter(d => d.x.includes(countryFilter1))
   const filteredData2 = countryFilter2 === '' ? filteredData1 : filteredData1.concat(data.filter(d => d.x.includes(countryFilter2))).sort((a, b) => {
@@ -47,6 +48,10 @@ const Countries = ({ data, color, countryFilter1, countryFilter2, pieData }) => 
                   color={color}
                   onValueClick={(datapoint, event)=>{
                     handleShowGraph(datapoint, event)
+                  }}
+                  onNearestX={(value, event) => {
+                    console.log(value)
+                    setHighlight(value)
                   }}
                 />
                 <LabelSeries 

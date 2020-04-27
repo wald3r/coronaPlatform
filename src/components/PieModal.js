@@ -69,10 +69,10 @@ const PieModal = ({handleGraph, showGraph, filter, data}) => {
             <RadialChart
               showLabels={true}
               radius={200}
-              labelsRadiusMultiplier={1.2}
+              labelsRadiusMultiplier={1.25}
               colorType="literal"
               data={filteredData1()}
-              width={500}
+              width={550}
               height={500}
           
             />
