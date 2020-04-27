@@ -17,6 +17,10 @@ const CountryModal = ({domain, handleGraph, showGraph, filter, confirmedData, re
   const [crosshair4, setCrosshair4] = useState([])
   const [date, setDate] = useState('')  
 
+
+  const [days, setDays] = useState('')
+ 
+
   const handleClose = () => {
     handleGraph(false)
   }
@@ -46,7 +50,41 @@ const CountryModal = ({domain, handleGraph, showGraph, filter, confirmedData, re
         let tmp2 = confirmedData[keys[a]]
         let tmp3 = deathsData[keys[a]]
         let tmp4 = recoveredData[keys[a]]
-        if(Number(tmp2) !== 0){
+        if(Number(tmp2) === 0){
+        }
+        else if(days === '30'){
+          if(a > (keys.length - 30)){
+            data1.push({x: keys[a], y: tmp1})
+            data2.push({x: keys[a], y: tmp2})
+            data3.push({x: keys[a], y: tmp3})
+            data4.push({x: keys[a], y: tmp4})
+          }
+        }
+        else if(days === '60'){
+          if(a > (keys.length - 60)){
+            data1.push({x: keys[a], y: tmp1})
+            data2.push({x: keys[a], y: tmp2})
+            data3.push({x: keys[a], y: tmp3})
+            data4.push({x: keys[a], y: tmp4})
+          }
+        }
+        else if(days === '90'){
+          if(a > (keys.length - 90)){
+            data1.push({x: keys[a], y: tmp1})
+            data2.push({x: keys[a], y: tmp2})
+            data3.push({x: keys[a], y: tmp3})
+            data4.push({x: keys[a], y: tmp4})
+          }
+        }
+        else if(days === 'f9'){
+          if(a < 90){
+            data1.push({x: keys[a], y: tmp1})
+            data2.push({x: keys[a], y: tmp2})
+            data3.push({x: keys[a], y: tmp3})
+            data4.push({x: keys[a], y: tmp4})
+          }
+        }
+        else{
           data1.push({x: keys[a], y: tmp1})
           data2.push({x: keys[a], y: tmp2})
           data3.push({x: keys[a], y: tmp3})
@@ -100,6 +138,16 @@ const CountryModal = ({domain, handleGraph, showGraph, filter, confirmedData, re
                 <Button size='sm' variant={activeDataFlag === true ? 'danger' : 'outline-danger'} onClick={() => setActiveDataFlag(!activeDataFlag)}>Active</Button>
                 <Button size='sm' variant={deathsDataFlag === true ? 'warning' : 'outline-warning'} onClick={() => setDeathsDataFlag(!deathsDataFlag)}>Deaths</Button>
                 <Button size='sm' variant={recoveredDataFlag === true ? 'success' : 'outline-success'} onClick={() => setRecoveredDataFlag(!recoveredDataFlag)}>Recovered</Button>
+              </div>
+              <br/>
+              <div style={{textAlign: 'center'}}>
+                <Button size='sm' variant='secondary' onClick={() => setDays('')}>All</Button>&nbsp;&nbsp;
+                <Button size='sm' variant='secondary' onClick={() => setDays('90')}>Last 90 Days</Button>
+                <Button size='sm' variant='secondary' onClick={() => setDays('60')}>Last 60 Days</Button>
+                <Button size='sm' variant='secondary' onClick={() => setDays('30')}>Last 30 Days</Button>&nbsp;&nbsp;
+
+                <Button size='sm' variant='secondary' onClick={() => setDays('f9')}>First 90 Days</Button>
+
               </div>
               <XYPlot
                 onMouseLeave={() => removeCrosshair()}

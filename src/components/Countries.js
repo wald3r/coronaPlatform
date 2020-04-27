@@ -50,8 +50,11 @@ const Countries = ({ data, color, countryFilter1, countryFilter2, pieData, setHi
                     handleShowGraph(datapoint, event)
                   }}
                   onNearestX={(value, event) => {
-                    console.log(value)
                     setHighlight(value)
+                  }}
+                  onSeriesMouseOut={(event) => {
+                    setHighlight(null)
+                    console.log('tests')
                   }}
                 />
                 <LabelSeries 
