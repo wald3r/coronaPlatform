@@ -35,7 +35,7 @@ const GlobalPie = ({ globalData }) => {
 
     return (
       <div>
-      Worldwide distribution <br/>
+      Worldwide Distribution <br/>
         <div style={container}>
           <div>
             <Badge variant="danger">Active</Badge>
